@@ -313,27 +313,29 @@ async function loadGameData() {
 
 // Add event listeners
 function addEventListeners() {
-  // Begin button
+  // Make toggleDecisionLog available globally
+  window.toggleDecisionLog = toggleDecisionLog;
+
+  // Buttons
   elements.beginBtn.addEventListener("click", startGame);
-
-  // Continue button
   elements.continueBtn.addEventListener("click", continueFromOverlay);
-
-  // Start Over button
   elements.startOverBtn.addEventListener("click", resetGame);
 
-  // Sound toggle button
-  const soundBtn = document.getElementById("sound-btn");
-  if (soundBtn) {
-    soundBtn.addEventListener("click", toggleSound);
-  }
-
-  // Choice buttons
+  // Add click listeners to all choice buttons
   elements.choiceButtons.forEach((button) => {
     button.addEventListener("click", () =>
       handleChoice(parseInt(button.dataset.choice))
     );
   });
+
+  // Sound button
+  const soundBtn = document.getElementById("sound-btn");
+  if (soundBtn) {
+    soundBtn.addEventListener("click", toggleSound);
+  }
+
+  // Window resize
+  window.addEventListener("resize", handleWindowResize);
 }
 
 // Toggle sound on/off
@@ -1068,14 +1070,41 @@ function handleChoice(choiceIndex) {
 
 // Add to decision log
 function addToLog(dilemma, choice) {
+  // Check if this is the first entry for the current eon, if so add an eon header
+  const currentEonEntries = document.querySelectorAll(
+    `.log-eon-${gameState.currentEon}`
+  );
+  if (currentEonEntries.length === 0) {
+    const eonNames = ["Awakening World", "Industrial Dusk", "Final Horizon"];
+    const eonHeader = document.createElement("div");
+    eonHeader.classList.add(
+      "log-eon-header",
+      `log-eon-${gameState.currentEon}`
+    );
+    eonHeader.innerHTML = `<div class="log-eon-title">Eon ${
+      gameState.currentEon
+    }: ${eonNames[gameState.currentEon - 1]}</div>`;
+    elements.logContent.appendChild(eonHeader);
+  }
+
+  // Add the actual decision entry
   const logEntry = document.createElement("div");
-  logEntry.classList.add("log-entry");
+  logEntry.classList.add("log-entry", `log-eon-${gameState.currentEon}`);
   logEntry.innerHTML = `
         <div class="log-dilemma">${dilemma}</div>
         <div class="log-choice">→ ${choice}</div>
     `;
   elements.logContent.appendChild(logEntry);
   elements.logContent.scrollTop = elements.logContent.scrollHeight;
+}
+
+// Toggle decision log visibility
+function toggleDecisionLog() {
+  const consoleLog = document.getElementById("console-log");
+  consoleLog.classList.toggle("collapsed");
+
+  // Play sound effect
+  playSFX("uiSelect");
 }
 
 // Show eon splash screen
@@ -1961,6 +1990,7 @@ function resetGame(event) {
     autonomy: 50,
   };
   gameState.decisions = [];
+  gameState.currentQuestionObj = null;
 
   // Reset continue button text to ensure consistency
   const continueBtn = document.getElementById("continue-btn");

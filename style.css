@@ -835,61 +835,106 @@ body {
 /* Console Log */
 #console-log {
   position: absolute;
-  top: 10%;
-  right: 3%;
-  width: 20%;
-  height: 40%;
-  background-color: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(100, 100, 100, 0.6);
+  right: 20px;
+  bottom: 20px;
+  width: 300px;
+  max-height: 200px;
+  background-color: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(0, 160, 255, 0.5);
   border-radius: 5px;
   padding: 10px;
-  overflow-y: auto;
-  font-size: 0.8rem;
-  z-index: 1;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  z-index: 10;
+}
+
+#console-log.collapsed {
+  max-height: 32px;
+  overflow: hidden;
 }
 
 .log-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
   color: #0af;
+  margin-bottom: 5px;
   text-align: center;
-  border-bottom: 1px solid rgba(100, 150, 200, 0.5);
-  padding-bottom: 5px;
-  margin-bottom: 10px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.log-title::after {
+  content: "▼";
+  font-size: 10px;
+  transition: transform 0.3s ease;
+}
+
+#console-log.collapsed .log-title::after {
+  transform: rotate(-90deg);
 }
 
 #log-content {
-  color: #ccc;
+  overflow-y: auto;
+  max-height: 150px;
+}
+
+.log-eon-header {
+  margin: 8px 0;
+  padding-bottom: 4px;
+  border-bottom: 2px solid rgba(0, 160, 255, 0.7);
+}
+
+.log-eon-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.95em;
+  font-weight: bold;
+  color: #0af;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(0, 160, 255, 0.5);
+}
+
+/* Style first eon differently */
+.log-eon-1 .log-eon-title {
+  color: #5af;
+}
+
+/* Style second eon differently */
+.log-eon-2 .log-eon-title {
+  color: #0af;
+}
+
+/* Style third eon differently */
+.log-eon-3 .log-eon-title {
+  color: #06f;
 }
 
 #log-content .log-entry {
   margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px dotted rgba(100, 100, 100, 0.3);
+  font-size: 0.8rem;
 }
 
 .log-dilemma {
-  color: #0af; /* Blue for tag type */
-  font-size: 0.85rem;
-  margin-bottom: 4px;
-  line-height: 1.2;
-  font-weight: 600;
-  text-transform: uppercase;
+  color: #ccc;
+  margin-bottom: 2px;
+  border-left: 2px solid #0af;
+  padding-left: 8px;
+  font-size: 0.85em;
 }
 
 .log-choice {
-  color: #dddddd;
-  font-size: 0.75rem;
-  padding-left: 10px;
-  line-height: 1.3;
-  margin-bottom: 2px;
-  max-height: 1.3rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  color: #0af;
+  margin-left: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px dashed rgba(0, 160, 255, 0.3);
+  font-size: 0.8em;
 }
 
 .log-choice:last-child {
-  color: #aaffaa; /* Light green for the choice */
-  font-weight: 500;
+  border-bottom: none;
 }
 
 /* Eon Counter */
@@ -1243,29 +1288,39 @@ body {
   0% {
     transform: scale(1);
     text-shadow: 0 0 5px rgba(0, 200, 255, 0.7);
+    letter-spacing: 1px;
+  }
+  25% {
+    transform: scale(1.2);
+    text-shadow: 0 0 15px rgba(0, 200, 255, 0.9),
+      0 0 25px rgba(0, 200, 255, 0.7);
+    letter-spacing: 2px;
+    color: #00eaff;
   }
   50% {
-    transform: scale(1.1);
-    text-shadow: 0 0 15px rgba(0, 220, 255, 0.9),
-      0 0 30px rgba(0, 180, 255, 0.7);
-    color: #7df;
+    transform: scale(1.15);
+    text-shadow: 0 0 12px rgba(0, 200, 255, 0.8),
+      0 0 20px rgba(0, 200, 255, 0.6);
+    letter-spacing: 1.5px;
+    color: #0af;
   }
   100% {
     transform: scale(1);
-    text-shadow: 0 0 5px rgba(0, 200, 255, 0.7);
+    text-shadow: 0 0 10px rgba(0, 200, 255, 0.7);
+    letter-spacing: 1px;
   }
 }
 
 @keyframes eonGlow {
   0% {
-    text-shadow: 0 0 5px rgba(0, 200, 255, 0.7);
+    text-shadow: 0 0 8px rgba(0, 180, 255, 0.7);
   }
   50% {
-    text-shadow: 0 0 15px rgba(0, 220, 255, 0.9),
-      0 0 30px rgba(0, 150, 255, 0.8);
+    text-shadow: 0 0 15px rgba(0, 200, 255, 0.9),
+      0 0 10px rgba(0, 180, 255, 0.7);
   }
   100% {
-    text-shadow: 0 0 5px rgba(0, 200, 255, 0.7);
+    text-shadow: 0 0 8px rgba(0, 180, 255, 0.7);
   }
 }
 
@@ -1274,5 +1329,5 @@ body {
 }
 
 .eon-glow {
-  animation: eonGlow 2s infinite ease-in-out;
+  animation: eonGlow 3s infinite ease-in-out;
 }
