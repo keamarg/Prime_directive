@@ -1,0 +1,1237 @@
+:root {
+  --scale-factor: 1;
+  --title-font-size: 5rem;
+  --description-font-size: 1.1rem;
+  --button-font-size: 1.2rem;
+  --dilemma-title-size: 1.6rem;
+  --dilemma-text-size: 1.2rem;
+  --choice-button-size: 1.05rem;
+  --content-height-adjustment: 1; /* For extreme short heights */
+}
+
+/* Add responsive scale factors based on screen size */
+@media (max-width: 1400px) {
+  :root {
+    --scale-factor: 0.95;
+    --title-font-size: 4.5rem;
+    --dilemma-title-size: 1.5rem;
+    --dilemma-text-size: 1.15rem;
+    --choice-button-size: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --scale-factor: 0.9;
+    --title-font-size: 4rem;
+    --description-font-size: 1rem;
+    --button-font-size: 1.1rem;
+    --dilemma-title-size: 1.4rem;
+    --dilemma-text-size: 1.05rem;
+    --choice-button-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --scale-factor: 0.85;
+    --title-font-size: 3.5rem;
+    --description-font-size: 0.95rem;
+    --button-font-size: 1rem;
+    --dilemma-title-size: 1.3rem;
+    --dilemma-text-size: 1rem;
+    --choice-button-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --scale-factor: 0.8;
+    --title-font-size: 2.5rem;
+    --description-font-size: 0.9rem;
+    --button-font-size: 0.9rem;
+    --dilemma-title-size: 1.2rem;
+    --dilemma-text-size: 0.9rem;
+    --choice-button-size: 0.85rem;
+  }
+}
+
+/* Add more specific height-based media queries */
+@media (max-height: 500px) {
+  :root {
+    --content-height-adjustment: 0.85;
+    --dilemma-title-size: 1.1rem;
+    --dilemma-text-size: 0.9rem;
+    --choice-button-size: 0.8rem;
+  }
+
+  #question-card {
+    bottom: 5% !important;
+  }
+}
+
+@media (max-height: 400px) {
+  :root {
+    --content-height-adjustment: 0.7;
+    --dilemma-title-size: 0.9rem;
+    --dilemma-text-size: 0.8rem;
+    --choice-button-size: 0.7rem;
+  }
+
+  #question-card {
+    bottom: 2% !important;
+  }
+}
+
+/* Special handling for combined constraints (low height AND low width) */
+@media (max-height: 500px) and (max-width: 768px) {
+  #question-card {
+    width: 90%;
+    padding: 5px 10px;
+  }
+
+  #choices {
+    gap: 3px;
+    margin-top: 3px;
+  }
+
+  .choice {
+    min-height: 22px;
+    padding: 2px 4px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  #game-container {
+    width: calc(100vh * (16 / 9));
+    height: 100vh;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  #game-container {
+    width: 100vw;
+    height: calc(100vw * (9 / 16));
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Intro Screen */
+#intro-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#intro-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#intro-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Allow clicks to pass through to the elements below */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Ensure button container doesn't move */
+.button-container {
+  margin-top: 35px;
+  height: 60px; /* Fixed height to prevent layout shifts */
+  position: relative;
+  z-index: 5;
+}
+
+#game-title {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 900;
+  font-size: calc(var(--title-font-size) * var(--scale-factor));
+  color: #0af;
+  text-shadow: 0 0 10px rgba(0, 160, 255, 0.7), 0 0 20px rgba(0, 120, 255, 0.5),
+    0 0 30px rgba(0, 80, 255, 0.3);
+  letter-spacing: 5px;
+  position: absolute;
+  top: 25%; /* Fixed position from the top */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  animation: titleFadeIn 2.5s forwards;
+  width: 100%;
+  text-align: center;
+}
+
+@keyframes titleFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+#game-description {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: calc(var(--description-font-size) * var(--scale-factor));
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 1);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s forwards;
+  animation-delay: 1.5s;
+  margin-top: 50px; /* Adjust spacing from title */
+  text-align: center;
+  padding: 0 25px; /* Add padding for smaller screens */
+  position: relative;
+  z-index: 5;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#game-description p {
+  margin-bottom: 18px;
+  opacity: 0.95;
+}
+
+#game-description strong {
+  color: #0af;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(0, 150, 255, 0.5);
+}
+
+.truth-text {
+  color: #0af;
+}
+.happiness-text {
+  color: #0f0;
+}
+.autonomy-text {
+  color: #f0a;
+}
+
+#begin-btn {
+  position: relative;
+  padding: 15px 30px;
+  background-color: rgba(0, 100, 200, 0.7);
+  color: white;
+  border: 2px solid rgba(100, 200, 255, 0.8);
+  border-radius: 5px;
+  font-size: calc(var(--button-font-size) * var(--scale-factor));
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 1px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s forwards;
+  animation-delay: 2.5s;
+  pointer-events: auto; /* Make sure button is clickable */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 100, 200, 0.4);
+}
+
+#begin-btn:hover {
+  background-color: rgba(0, 150, 250, 0.8);
+  box-shadow: 0 0 20px rgba(0, 170, 255, 0.6);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Bridge Screen */
+#bridge-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#bridge-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+#bridge-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Monitors - Coordinate-based approach */
+#monitors {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
+/* Monitor base styles */
+.monitor {
+  position: absolute;
+  overflow: hidden;
+  background-color: transparent;
+  border-radius: 3px;
+  z-index: 2;
+}
+
+/* Monitor display areas - preserve aspect ratio */
+.monitor .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Changed from cover to contain */
+  object-position: center;
+  mix-blend-mode: screen;
+  opacity: 1;
+  visibility: visible !important;
+  z-index: 2;
+}
+
+/* Monitor labels - ensure visibility */
+.monitor .label {
+  position: absolute;
+  width: auto;
+  min-width: 60px;
+  text-align: center;
+  font-size: 0.8vw;
+  color: rgba(200, 230, 255, 1);
+  text-shadow: 0 0 5px rgba(0, 100, 255, 0.9), 0 0 10px rgba(0, 50, 150, 0.5);
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 5;
+  background-color: rgba(0, 20, 40, 0.7);
+  padding: 3px 6px;
+  border-radius: 3px;
+  transform: translate(-50%, -50%);
+  visibility: hidden !important; /* Hide labels */
+  opacity: 0 !important; /* Hide labels */
+  pointer-events: none;
+  display: none; /* Hide labels completely */
+}
+
+/* Coordinate placeholders - these will be filled with actual values */
+#truth-monitor {
+  /* Will be positioned with provided corner coordinates */
+  width: 15%;
+  height: 10%;
+  left: 18%;
+  top: 26%;
+}
+
+#happiness-monitor {
+  /* Will be positioned with provided corner coordinates */
+  width: 15%;
+  height: 10%;
+  left: 42%;
+  top: 24%;
+}
+
+#autonomy-monitor {
+  /* Will be positioned with provided corner coordinates */
+  width: 15%;
+  height: 10%;
+  left: 66%;
+  top: 26%;
+}
+
+/* Refine bar containers for better positioning */
+.bar-container {
+  position: absolute;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.4); /* Add slight background for contrast */
+  z-index: 3; /* Ensure bars are above monitors */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7); /* Add shadow for better visibility */
+}
+
+.bar {
+  position: relative; /* Changed from absolute to relative */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
+  overflow: hidden;
+  --bar-width: 50%; /* Default value */
+}
+
+.bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--bar-width);
+  background-color: #0af;
+  transition: width 0.5s, background-color 0.5s;
+  box-shadow: 0 0 8px currentColor; /* Glow effect */
+}
+
+/* Integrated labels for bars */
+#truth-bar::after {
+  content: "TRUTH";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 0.7vw;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 100, 255, 0.6);
+  white-space: nowrap;
+  z-index: 4;
+  pointer-events: none;
+}
+
+#happiness-bar::after {
+  content: "HAPPINESS";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 0.7vw;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 255, 0, 0.6);
+  white-space: nowrap;
+  z-index: 4;
+  pointer-events: none;
+}
+
+#autonomy-bar::after {
+  content: "AUTONOMY";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 0.7vw;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.8), 0 0 5px rgba(255, 0, 170, 0.6);
+  white-space: nowrap;
+  z-index: 4;
+  pointer-events: none;
+}
+
+#truth-bar::before {
+  background-color: #0af;
+}
+#happiness-bar::before {
+  background-color: #0f0;
+}
+#autonomy-bar::before {
+  background-color: #f0a;
+}
+
+/* Debug styles for draggable monitors - more visible in debug mode */
+.debug-draggable {
+  cursor: default !important;
+  border: none;
+}
+
+/* Only add debug styles when debugging is active */
+.debug-active .debug-draggable {
+  cursor: move !important;
+  border: 2px dashed rgba(255, 255, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Hide resize handles by default */
+.resize-handle {
+  display: none !important;
+}
+
+/* Only show resize handles in debug mode */
+.debug-active .resize-handle {
+  display: block !important;
+}
+
+/* Enhancing the debug display to show monitor coordinates */
+.monitor-coords {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  color: #0af;
+  font-size: 10px;
+  padding: 2px 4px;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 10;
+  display: none;
+}
+
+.debug-active .monitor-coords {
+  display: block;
+}
+
+/* Question Card with fixed height */
+#question-card {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 800px;
+
+  /* Fixed height instead of variable max-height */
+  height: 320px;
+  min-height: 320px;
+  max-height: 320px; /* Force same height always */
+
+  background-color: rgba(20, 30, 50, 0.95);
+  border: 2px solid rgba(50, 100, 150, 0.8);
+  border-radius: 10px;
+  padding: 20px 25px;
+  z-index: 15;
+
+  /* Always show scrollbar to maintain consistent appearance */
+  overflow-y: auto;
+
+  box-shadow: 0 0 20px rgba(0, 50, 100, 0.6);
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  /* Consistent layout */
+  box-sizing: border-box;
+
+  /* Add default transition for smooth animations */
+  transition: opacity 0.7s ease-out, visibility 0.7s ease-out;
+
+  /* Custom scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 170, 255, 0.6) rgba(20, 30, 50, 0.3);
+}
+
+/* Question Card with fixed height - adjusted smaller */
+#question-card {
+  position: absolute;
+  bottom: 4%; /* Lower position to avoid covering monitors */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 800px;
+
+  /* Reduced fixed height */
+  height: 260px;
+  min-height: 260px;
+  max-height: 260px;
+
+  background-color: rgba(20, 30, 50, 0.95);
+  border: 2px solid rgba(50, 100, 150, 0.8);
+  border-radius: 10px;
+  padding: 20px 25px 15px 25px; /* Reduced bottom padding */
+  z-index: 15;
+
+  /* Always show scrollbar to maintain consistent appearance */
+  overflow-y: auto;
+
+  box-shadow: 0 0 20px rgba(0, 50, 100, 0.6);
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  /* Consistent layout */
+  box-sizing: border-box;
+
+  /* Add default transition for smooth animations */
+  transition: opacity 0.7s ease-out, visibility 0.7s ease-out;
+
+  /* Custom scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 170, 255, 0.6) rgba(20, 30, 50, 0.3);
+}
+
+#dilemma-title {
+  margin-bottom: 8px;
+  color: #0af;
+  font-size: calc(var(--dilemma-title-size) * var(--scale-factor));
+  font-family: "Orbitron", sans-serif;
+  line-height: 1.25;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+  padding: 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-weight: bold;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+#dilemma-text {
+  margin-bottom: 10px;
+  line-height: 1.4;
+  font-size: calc(var(--dilemma-text-size) * var(--scale-factor));
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  padding: 0 15px;
+  font-weight: normal;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* Remove scrollbar styling for question card */
+#question-card::-webkit-scrollbar {
+  display: none;
+}
+
+#question-card::-webkit-scrollbar-track {
+  display: none;
+}
+
+#question-card::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+#question-card::-webkit-scrollbar-thumb:hover {
+  display: none;
+}
+
+/* Custom scrollbar styling */
+#question-card::-webkit-scrollbar {
+  width: 8px;
+  display: block;
+}
+
+#question-card::-webkit-scrollbar-track {
+  background: rgba(20, 30, 50, 0.3);
+  border-radius: 4px;
+  display: block;
+}
+
+#question-card::-webkit-scrollbar-thumb {
+  background: rgba(0, 170, 255, 0.6);
+  border-radius: 4px;
+  display: block;
+}
+
+#question-card::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 170, 255, 0.8);
+  display: block;
+}
+
+/* Special handling for very small heights */
+@media (max-height: 700px) {
+  #question-card {
+    height: 280px;
+    min-height: 280px;
+    max-height: 280px;
+    bottom: 5%;
+    padding: 10px 15px;
+  }
+
+  #dilemma-title {
+    margin-bottom: 6px;
+    font-size: calc(var(--dilemma-title-size) * 0.85);
+  }
+
+  #dilemma-text {
+    margin-bottom: 8px;
+    font-size: calc(var(--dilemma-text-size) * 0.85);
+    line-height: 1.4;
+  }
+
+  .choice {
+    min-height: 32px;
+    padding: 6px 8px;
+    font-size: calc(var(--choice-button-size) * 0.85);
+  }
+
+  #choices {
+    gap: 6px;
+    margin-top: 6px;
+  }
+}
+
+@media (max-height: 600px) {
+  #question-card {
+    height: 250px;
+    min-height: 250px;
+    max-height: 250px;
+    bottom: 4%;
+    padding: 8px 12px;
+  }
+
+  #monitors .monitor {
+    transform: scale(0.9);
+  }
+
+  .bar-container {
+    transform: scale(0.95);
+  }
+}
+
+/* Ensure choices are visible and properly sized */
+#choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.choice {
+  background-color: rgba(0, 70, 120, 0.7);
+  border: 1px solid rgba(0, 130, 200, 0.9);
+  border-radius: 6px;
+  padding: 6px 8px;
+  min-height: 32px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  overflow: hidden;
+  word-wrap: break-word;
+  line-height: 1.2;
+  hyphens: auto;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  white-space: normal;
+  height: auto;
+}
+
+/* Styling for long text buttons */
+.choice[data-length="long"] {
+  font-size: 0.85em;
+  padding: 5px 7px;
+}
+
+.choice[data-length="very-long"] {
+  font-size: 0.75em;
+  padding: 4px 6px;
+  line-height: 1.15;
+}
+
+/* Button hover */
+.choice:hover {
+  background-color: rgba(0, 100, 170, 0.8);
+  border-color: rgba(40, 170, 255, 1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 170, 255, 0.4);
+}
+
+/* Special case for small screens */
+@media (max-width: 768px) {
+  #choices {
+    gap: 8px;
+    margin-top: 5px;
+  }
+
+  .choice {
+    padding: 5px 7px;
+    min-height: 30px;
+    font-size: 0.9em;
+  }
+
+  .choice[data-length="long"] {
+    font-size: 0.8em;
+    padding: 4px 6px;
+  }
+
+  .choice[data-length="very-long"] {
+    font-size: 0.7em;
+    padding: 3px 5px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 500px) {
+  #choices {
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .choice {
+    min-height: 28px;
+  }
+}
+
+/* Special combined constraints for height AND width */
+@media (max-height: 600px) and (max-width: 768px) {
+  #choices {
+    gap: 5px;
+    margin-top: 3px;
+  }
+
+  .choice {
+    min-height: 26px;
+    padding: 4px 6px;
+  }
+}
+
+/* Console Log */
+#console-log {
+  position: absolute;
+  top: 10%;
+  right: 3%;
+  width: 20%;
+  height: 40%;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(100, 100, 100, 0.6);
+  border-radius: 5px;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 0.8rem;
+  z-index: 1;
+}
+
+.log-title {
+  color: #0af;
+  text-align: center;
+  border-bottom: 1px solid rgba(100, 150, 200, 0.5);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+#log-content {
+  color: #ccc;
+}
+
+#log-content .log-entry {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dotted rgba(100, 100, 100, 0.3);
+}
+
+.log-dilemma {
+  color: #0af; /* Blue for tag type */
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+  line-height: 1.2;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.log-choice {
+  color: #dddddd;
+  font-size: 0.75rem;
+  padding-left: 10px;
+  line-height: 1.3;
+  margin-bottom: 2px;
+  max-height: 1.3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.log-choice:last-child {
+  color: #aaffaa; /* Light green for the choice */
+  font-weight: 500;
+}
+
+/* Eon Counter */
+#current-eon {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  color: #0af;
+  font-size: 1.2rem;
+  text-shadow: 0 0 5px #000;
+  z-index: 1;
+}
+
+#questions-counter {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  text-shadow: 0 0 5px #000;
+  z-index: 1;
+}
+
+/* Fullscreen Overlay */
+#fullscreen-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Changed from center to space-between */
+  align-items: center;
+  transition: opacity 1s ease-in;
+  padding: 5% 0; /* Added padding to top and bottom */
+}
+
+#overlay-img {
+  max-width: 100%;
+  max-height: 65%; /* Reduced from 80% to leave more room for text and button */
+  object-fit: contain;
+  margin-top: 2%; /* Added margin to push down from top */
+}
+
+#overlay-text {
+  width: 80%;
+  padding: 15px;
+  color: white;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 15px 0; /* Changed from margin-top to margin for vertical spacing */
+  flex-grow: 0; /* Prevent text from expanding */
+}
+
+#continue-btn {
+  margin-bottom: 8%; /* Changed from margin-top to margin-bottom to position from bottom */
+  padding: 12px 30px; /* Increased padding for better visibility */
+  background-color: rgba(0, 100, 200, 0.8); /* Slightly more opaque */
+  color: white;
+  border: 1px solid rgba(100, 200, 255, 0.8);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1.2rem; /* Increased font size */
+  box-shadow: 0 0 15px rgba(0, 150, 255, 0.5); /* Added glow effect */
+}
+
+#continue-btn:hover {
+  background-color: rgba(0, 150, 250, 0.8);
+  transform: scale(1.05);
+}
+
+/* Special style for the continue button when it's a "Start New Game" button */
+#fullscreen-overlay.ending #continue-btn {
+  margin-bottom: 10%; /* More space at the bottom for ending screen */
+  background-color: rgba(0, 150, 250, 0.9); /* More vibrant color */
+  border: 2px solid rgba(150, 220, 255, 0.9);
+  font-weight: bold;
+}
+
+/* Pulse animation for the start new game button */
+@keyframes pulseButton {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(0, 150, 255, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.7);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(0, 150, 255, 0.5);
+  }
+}
+
+#continue-btn.game-complete {
+  animation: pulseButton 2s infinite;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-height: 700px) {
+  #fullscreen-overlay {
+    padding: 3% 0;
+  }
+
+  #overlay-img {
+    max-height: 60%;
+  }
+
+  #continue-btn {
+    margin-bottom: 5%;
+  }
+}
+
+@media (max-height: 500px) {
+  #fullscreen-overlay {
+    padding: 2% 0;
+    justify-content: flex-start; /* Change layout for very small heights */
+  }
+
+  #overlay-img {
+    max-height: 45%;
+    margin-top: 1%;
+  }
+
+  #overlay-text {
+    margin: 10px 0;
+    font-size: 1rem;
+  }
+
+  #continue-btn {
+    margin-top: 10px; /* Add top margin */
+    margin-bottom: 3%;
+    position: relative;
+    z-index: 20; /* Ensure button is clickable */
+  }
+}
+
+/* Start Over Button */
+#start-over-btn {
+  position: absolute;
+  top: 15px;
+  right: 65px; /* Positioned to the left of the sound button */
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 100;
+  display: none; /* Hidden by default */
+  align-items: center; /* For flexbox alignment */
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#start-over-btn:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+#start-over-btn .material-icons-round {
+  font-size: 20px;
+}
+
+/* Media queries for font sizing */
+@media (max-width: 768px) {
+  #game-title {
+    font-size: 3.5rem;
+  }
+
+  #game-description {
+    font-size: 0.9rem;
+  }
+
+  .choice,
+  #begin-btn,
+  #continue-btn {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #game-title {
+    font-size: 2.5rem;
+  }
+
+  #game-description {
+    font-size: 0.8rem;
+  }
+}
+
+/* Sound Button */
+.sound-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 101; /* Always on top */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.sound-btn:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.sound-icon {
+  font-size: 20px !important;
+}
+
+.sound-btn.sound-off .sound-icon {
+  /* Material design icon for volume off */
+  content: "volume_off";
+}
+
+/* Remove old media queries */
+
+#truth-bar-container::after,
+#happiness-bar-container::after,
+#autonomy-bar-container::after {
+  content: none;
+}
+
+/* Dynamic text scaling based on text length */
+#dilemma-title {
+  margin-bottom: 10px;
+  color: #0af;
+  font-size: calc(var(--dilemma-title-size) * var(--scale-factor));
+  font-family: "Orbitron", sans-serif;
+  line-height: 1.25;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+  padding: 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-weight: bold;
+  max-width: 100%;
+  word-wrap: break-word;
+  /* Allow automatic shrinking when needed */
+  white-space: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+#dilemma-text {
+  margin-bottom: 12px;
+  line-height: 1.5;
+  font-size: calc(var(--dilemma-text-size) * var(--scale-factor));
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  padding: 0 15px;
+  font-weight: normal;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-width: 100%;
+  /* Allow automatic shrinking when needed */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Special handling for very small heights */
+@media (max-height: 700px) {
+  #question-card {
+    height: 220px;
+    min-height: 220px;
+    max-height: 220px;
+    bottom: 3%;
+    padding: 10px 15px 8px 15px;
+  }
+
+  #dilemma-title {
+    margin-bottom: 6px;
+    font-size: calc(var(--dilemma-title-size) * 0.85);
+  }
+
+  #dilemma-text {
+    margin-bottom: 8px;
+    font-size: calc(var(--dilemma-text-size) * 0.85);
+    line-height: 1.4;
+  }
+
+  .choice {
+    min-height: 32px;
+    padding: 6px 8px;
+    font-size: calc(var(--choice-button-size) * 0.85);
+  }
+
+  #choices {
+    gap: 6px;
+    margin-top: 6px;
+  }
+}
+
+@media (max-height: 600px) {
+  #question-card {
+    height: 200px;
+    min-height: 200px;
+    max-height: 200px;
+    bottom: 2%;
+    padding: 8px 12px 6px 12px;
+  }
+
+  #monitors .monitor {
+    transform: scale(0.9);
+  }
+
+  .bar-container {
+    transform: scale(0.95);
+  }
+}
+
+/* Additional classes for fade transitions */
+#question-card.fade-out {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}

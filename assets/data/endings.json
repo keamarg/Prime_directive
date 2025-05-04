@@ -1,0 +1,296 @@
+[
+  {
+    "id": "ending01",
+    "img": "ending01.png",
+    "profile": {
+      "truth": "high",
+      "happiness": "high",
+      "autonomy": "high"
+    },
+    "text": [
+      "The civilization reached a golden age of self-awareness and joy.",
+      "They honored your presence \u2014 not as a god, but as a guide once glimpsed among the stars."
+    ]
+  },
+  {
+    "id": "ending02",
+    "img": "ending02.png",
+    "profile": {
+      "truth": "high",
+      "happiness": "low",
+      "autonomy": "high"
+    },
+    "text": [
+      "Their world is enlightened but joyless, obsessed with truth and order.",
+      "Generations live by fact alone, untouched by wonder."
+    ]
+  },
+  {
+    "id": "ending03",
+    "img": "ending03.png",
+    "profile": {
+      "truth": "low",
+      "happiness": "high",
+      "autonomy": "high"
+    },
+    "text": [
+      "Blissful and free, they flourish under myth and intuition.",
+      "Though they never knew you, their legends are filled with warmth and fire."
+    ]
+  },
+  {
+    "id": "ending04",
+    "img": "ending04.png",
+    "profile": {
+      "truth": "low",
+      "happiness": "low",
+      "autonomy": "high"
+    },
+    "text": [
+      "Alone and unknowing, they fractured into tribes of fear.",
+      "Freedom reigned, but in the shadow of endless conflict."
+    ]
+  },
+  {
+    "id": "ending05",
+    "img": "ending05.png",
+    "profile": {
+      "truth": "high",
+      "happiness": "high",
+      "autonomy": "low"
+    },
+    "text": [
+      "They built towers of glass and light, but always watched the sky for command.",
+      "Their joy was real, but owned."
+    ]
+  },
+  {
+    "id": "ending06",
+    "img": "ending06.png",
+    "profile": {
+      "truth": "low",
+      "happiness": "high",
+      "autonomy": "low"
+    },
+    "text": [
+      "The people lived soft lives under silent rule, never questioning the gifts.",
+      "Comfort replaced wonder, compliance wore the mask of peace."
+    ]
+  },
+  {
+    "id": "ending07",
+    "img": "ending07.png",
+    "profile": {
+      "truth": "high",
+      "happiness": "low",
+      "autonomy": "low"
+    },
+    "text": [
+      "A total system: calculated, precise, hollow.",
+      "They understood the universe but forgot what it meant to be alive."
+    ]
+  },
+  {
+    "id": "ending08",
+    "img": "ending08.png",
+    "profile": {
+      "truth": "low",
+      "happiness": "low",
+      "autonomy": "low"
+    },
+    "text": [
+      "Your silence echoed louder than any word.",
+      "They withered, forgotten and unaware, beneath a sky that never answered."
+    ]
+  },
+  {
+    "id": "ending09",
+    "img": "ending09.png",
+    "profile": {
+      "truth": "mid",
+      "happiness": "mid",
+      "autonomy": "mid"
+    },
+    "text": [
+      "Their path was winding, imperfect, and truly their own.",
+      "Your presence was a whisper, not a weight \u2014 they remember it faintly, like a dream."
+    ]
+  },
+  {
+    "id": "ending10",
+    "img": "ending10.png",
+    "profile": {
+      "truth": "high",
+      "happiness": "mid",
+      "autonomy": "mid"
+    },
+    "text": [
+      "They charted stars and mapped their minds, half in shadow, half in light.",
+      "Their world became a question \u2014 one they were finally brave enough to ask."
+    ]
+  },
+  {
+    "id": "ending11",
+    "img": "ending01.png",
+    "dominantAspect": "truth",
+    "secondaryAspect": "happiness",
+    "text": [
+      "With piercing clarity, they created art that captured the very essence of existence.",
+      "Knowledge and beauty merged as they crafted monuments of crystalline thought, visible from distant worlds."
+    ]
+  },
+  {
+    "id": "ending12",
+    "img": "ending02.png",
+    "dominantAspect": "truth",
+    "secondaryAspect": "autonomy",
+    "text": [
+      "Their society evolved into a network of independent truth-seekers.",
+      "Knowledge spread like wildfire through self-organized collectives, each person both teacher and student."
+    ]
+  },
+  {
+    "id": "ending13",
+    "img": "ending03.png",
+    "dominantAspect": "happiness",
+    "secondaryAspect": "truth",
+    "text": [
+      "Joy became their science, bliss their philosophy.",
+      "They measured the universe not in numbers but in moments of transcendent understanding."
+    ]
+  },
+  {
+    "id": "ending14",
+    "img": "ending05.png",
+    "dominantAspect": "happiness",
+    "secondaryAspect": "autonomy",
+    "text": [
+      "A civilization of celebration emerged, where freedom and joy danced in perfect rhythm.",
+      "Each person crafted their own happiness, yet somehow moved in harmony with all others."
+    ]
+  },
+  {
+    "id": "ending15",
+    "img": "ending04.png",
+    "dominantAspect": "autonomy",
+    "secondaryAspect": "truth",
+    "text": [
+      "They chose truth freely, never by command or compulsion.",
+      "A multitude of paths led to the same stars, each person's journey utterly unique."
+    ]
+  },
+  {
+    "id": "ending16",
+    "img": "ending06.png",
+    "dominantAspect": "autonomy",
+    "secondaryAspect": "happiness",
+    "text": [
+      "Freedom became their greatest joy, independence their deepest pleasure.",
+      "They built a world where every choice was meaningful and every path led to fulfillment."
+    ]
+  },
+  {
+    "id": "ending17",
+    "img": "ending07.png",
+    "extremeAspect": "truth",
+    "isExtremeHigh": true,
+    "text": [
+      "Reality itself became transparent to them, the cosmos an open book.",
+      "They perceived you fully at last - not as a guide but as an equal, and in time, they surpassed even your understanding."
+    ]
+  },
+  {
+    "id": "ending18",
+    "img": "ending08.png",
+    "extremeAspect": "truth",
+    "isExtremeLow": true,
+    "text": [
+      "Truth became a distant memory, then a myth, then less than that.",
+      "They lived in elaborate fantasies, their minds so divorced from reality that even you could no longer reach them."
+    ]
+  },
+  {
+    "id": "ending19",
+    "img": "ending09.png",
+    "extremeAspect": "happiness",
+    "isExtremeHigh": true,
+    "text": [
+      "They achieved a state of perpetual ecstasy, minds and bodies resonating with pure joy.",
+      "You watched as they transcended into beings of light, their contentment so profound it seemed to bend reality around them."
+    ]
+  },
+  {
+    "id": "ending20",
+    "img": "ending10.png",
+    "extremeAspect": "happiness",
+    "isExtremeLow": true,
+    "text": [
+      "A fog of despair descended that no light could penetrate.",
+      "They built monuments to sorrow, cathedrals of grief, and worshipped at the altar of their own emptiness."
+    ]
+  },
+  {
+    "id": "ending21",
+    "img": "ending02.png",
+    "extremeAspect": "autonomy",
+    "isExtremeHigh": true,
+    "text": [
+      "They became utterly sovereign, each person an independent universe of thought and will.",
+      "Even your observation felt like an intrusion, so complete was their self-determination."
+    ]
+  },
+  {
+    "id": "ending22",
+    "img": "ending07.png",
+    "extremeAspect": "autonomy",
+    "isExtremeLow": true,
+    "text": [
+      "All will collapsed into a singular consciousness that moved as one.",
+      "They became less a civilization and more an organism - coordinated, efficient, and utterly devoid of individual thought."
+    ]
+  },
+  {
+    "id": "ending23",
+    "img": "ending03.png",
+    "isBalanced": true,
+    "text": [
+      "A perfect equilibrium emerged, delicate as crystal, strong as diamond.",
+      "Neither truth, happiness, nor freedom dominated - instead, they formed a trinity of virtues that guided humanity to the stars."
+    ]
+  },
+  {
+    "id": "ending24",
+    "img": "ending04.png",
+    "isPolarized": true,
+    "text": [
+      "Their civilization fractured along philosophical fault lines, each faction embodying a different extreme.",
+      "Yet somehow in this division they found a strange kind of completeness, like a shattered mirror that still reflects the whole sky."
+    ]
+  },
+  {
+    "id": "ending25",
+    "img": "ending05.png",
+    "detailedProfile": {
+      "truth": "very_high",
+      "happiness": "very_high",
+      "autonomy": "very_high"
+    },
+    "text": [
+      "They transcended all limitations of flesh and thought, becoming beings of pure potential.",
+      "You watched in awe as they slipped beyond your perception, evolving into entities that could reshape reality at will."
+    ]
+  },
+  {
+    "id": "ending26",
+    "img": "ending08.png",
+    "detailedProfile": {
+      "truth": "very_low",
+      "happiness": "very_low",
+      "autonomy": "very_low"
+    },
+    "text": [
+      "They descended into a dark age so profound it seemed to bend space and time around them.",
+      "Their civilization collapsed not with a bang but a whimper, fading like stars at dawn until nothing remained but ruins and silence."
+    ]
+  }
+]

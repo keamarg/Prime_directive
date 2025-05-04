@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Prime Directive</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <script>
+      // Check if we're being loaded from a file:// URL and redirect to fallback.html if needed
+      if (window.location.protocol === "file:") {
+        console.log("Detected file:// protocol - redirecting to fallback page");
+        window.location.href = "fallback.html";
+      }
+    </script>
+  </head>
+  <body>
+    <div id="game-container">
+      <!-- Sound Control Button - Material Icon -->
+      <button
+        id="sound-btn"
+        class="sound-btn sound-on"
+        aria-label="Toggle Sound"
+      >
+        <span class="material-icons-round sound-icon">volume_up</span>
+      </button>
+
+      <!-- Start Over Button - Icon only -->
+      <button id="start-over-btn" aria-label="Start Over">
+        <span class="material-icons-round">replay</span>
+      </button>
+
+      <!-- Title Screen -->
+      <div id="intro-screen">
+        <img src="assets/images/intro_screen.png" alt="The Prime Directive" />
+        <div id="intro-content">
+          <h1 id="game-title">PRIME DIRECTIVE</h1>
+          <div id="game-description" class="hidden">
+            <p>
+              A silent alien cruiser orbits a cooling planet. Over
+              <strong>three eons</strong> a young civilisation struggles while
+              its world slowly dies.
+            </p>
+            <p>
+              At nine pivotal moments you may <strong>intervene</strong>,
+              <strong>guide gently</strong>, or <strong>remain silent</strong>.
+            </p>
+            <p>
+              Every action (and inaction) shifts three aspects:
+              <span class="truth-text">Truth</span>,
+              <span class="happiness-text">Happiness</span>,
+              <span class="autonomy-text">Autonomy</span>
+            </p>
+          </div>
+          <div class="button-container">
+            <button id="begin-btn" class="hidden">Begin Observation</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bridge Screen -->
+      <div id="bridge-screen" class="hidden">
+        <div id="bridge-bg">
+          <img
+            src="assets/images/control_room_base.png"
+            alt="Spaceship Bridge"
+          />
+        </div>
+
+        <div id="monitors">
+          <div class="monitor" id="truth-monitor">
+            <img class="overlay" src="" alt="Truth Monitor" />
+            <div class="monitor-coords"></div>
+            <div class="label">Truth</div>
+          </div>
+          <div class="monitor" id="happiness-monitor">
+            <img class="overlay" src="" alt="Happiness Monitor" />
+            <div class="monitor-coords"></div>
+            <div class="label">Happiness</div>
+          </div>
+          <div class="monitor" id="autonomy-monitor">
+            <img class="overlay" src="" alt="Autonomy Monitor" />
+            <div class="monitor-coords"></div>
+            <div class="label">Autonomy</div>
+          </div>
+
+          <!-- Separate bar containers -->
+          <div class="bar-container" id="truth-bar-container">
+            <div class="bar" id="truth-bar"></div>
+          </div>
+          <div class="bar-container" id="happiness-bar-container">
+            <div class="bar" id="happiness-bar"></div>
+          </div>
+          <div class="bar-container" id="autonomy-bar-container">
+            <div class="bar" id="autonomy-bar"></div>
+          </div>
+        </div>
+
+        <div id="question-card">
+          <h2 id="dilemma-title">Dilemma Title</h2>
+          <p id="dilemma-text">Dilemma description will appear here.</p>
+          <div id="choices">
+            <button class="choice" data-choice="0">Intervene</button>
+            <button class="choice" data-choice="1">Guide Gently</button>
+            <button class="choice" data-choice="2">Remain Silent</button>
+            <button class="choice" data-choice="3">Do Nothing</button>
+          </div>
+        </div>
+
+        <div id="console-log">
+          <div class="log-title">Decision Log</div>
+          <div id="log-content"></div>
+        </div>
+
+        <div id="current-eon">Eon 1: Awakening World</div>
+        <div id="questions-counter">Question 1 of 3</div>
+      </div>
+
+      <!-- Fullscreen Overlay (for splashes & endings) -->
+      <div id="fullscreen-overlay" class="hidden">
+        <img id="overlay-img" src="" alt="Splash Screen" />
+        <div id="overlay-text"></div>
+        <button id="continue-btn">Continue</button>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
