@@ -425,6 +425,9 @@ function startGame() {
     elements.happinessMonitor.style.transition = "opacity 1.2s ease-in";
     elements.autonomyMonitor.style.transition = "opacity 1.2s ease-in";
 
+    // Apply subtle glow effect to the eon title
+    elements.currentEon.classList.add("eon-glow");
+
     // Update monitors to show initial states
     updateMonitors();
 
@@ -1309,8 +1312,10 @@ function continueFromOverlay() {
       gameState.currentEon++;
       gameState.currentQuestion = 1;
 
-      // Update eon display
+      // Update eon display with animation
       const eonNames = ["Awakening World", "Industrial Dusk", "Final Horizon"];
+
+      // Set the text first
       elements.currentEon.textContent = `Eon ${gameState.currentEon}: ${
         eonNames[gameState.currentEon - 1]
       }`;
@@ -1322,6 +1327,16 @@ function continueFromOverlay() {
       elements.currentEon.style.textShadow = "0 0 5px rgba(0, 200, 255, 0.7)";
       elements.currentEon.style.letterSpacing = "1px";
       elements.currentEon.style.marginBottom = "12px";
+
+      // Add animation class for the attention-grabbing effect
+      elements.currentEon.classList.add("eon-changing");
+
+      // Remove the animation class after it completes to allow it to be reapplied next time
+      setTimeout(() => {
+        elements.currentEon.classList.remove("eon-changing");
+        // Add a subtle continuous glow effect after the initial animation
+        elements.currentEon.classList.add("eon-glow");
+      }, 1500);
 
       // Hide the question counter
       if (elements.questionsCounter) {
@@ -1954,6 +1969,9 @@ function resetGame(event) {
     continueBtn.classList.remove("game-complete");
   }
 
+  // Clear any animation classes from the eon title
+  elements.currentEon.classList.remove("eon-changing", "eon-glow");
+
   // Clear log
   elements.logContent.innerHTML = "";
 
@@ -2091,6 +2109,15 @@ function showBridgeScreen() {
   elements.currentEon.style.textShadow = "0 0 5px rgba(0, 200, 255, 0.7)";
   elements.currentEon.style.letterSpacing = "1px";
   elements.currentEon.style.marginBottom = "12px";
+
+  // Add attention-grabbing animation for the eon title
+  elements.currentEon.classList.add("eon-changing");
+
+  // After animation finishes, switch to subtle glow
+  setTimeout(() => {
+    elements.currentEon.classList.remove("eon-changing");
+    elements.currentEon.classList.add("eon-glow");
+  }, 1500);
 
   // Hide the question counter
   if (elements.questionsCounter) {
