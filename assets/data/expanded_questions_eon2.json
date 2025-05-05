@@ -1,0 +1,391 @@
+{
+  "newEon2Questions": [
+    {
+      "id": "e2q02",
+      "tags": ["happiness", "art"],
+      "prompt": "A new style of music emerges that uses mechanical instruments, dividing cultural critics.",
+      "choices": [
+        {
+          "label": "Inspire composers to blend traditional and mechanical elements harmoniously.",
+          "effect": {
+            "truth": 4,
+            "happiness": 12,
+            "autonomy": 3
+          },
+          "tags": ["happiness_up", "harmony"]
+        },
+        {
+          "label": "Subtly enhance the emotional impact of the mechanical sounds.",
+          "effect": {
+            "truth": -5,
+            "happiness": 14,
+            "autonomy": -3
+          },
+          "tags": ["happiness_up", "manipulation"]
+        },
+        {
+          "label": "Guide innovators to make the technology more accessible to everyone.",
+          "effect": {
+            "truth": 3,
+            "happiness": 6,
+            "autonomy": 9
+          },
+          "tags": ["autonomy_up", "democratization"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 0,
+            "happiness": -3,
+            "autonomy": 7
+          },
+          "tags": ["autonomy_up", "natural_evolution"]
+        }
+      ]
+    },
+    {
+      "id": "e2q03",
+      "tags": ["truth", "communication"],
+      "prompt": "Inventors develop a printing press, allowing ideas to spread rapidly across the civilization.",
+      "choices": [
+        {
+          "label": "Inspire works that accurately describe natural phenomena.",
+          "effect": {
+            "truth": 12,
+            "happiness": 3,
+            "autonomy": 4
+          },
+          "tags": ["truth_up", "educational"]
+        },
+        {
+          "label": "Guide religious leaders to embrace the new technology.",
+          "effect": {
+            "truth": -6,
+            "happiness": 10,
+            "autonomy": -2
+          },
+          "tags": ["happiness_up", "religious"]
+        },
+        {
+          "label": "Ensure revolutionary manifestos are among the first printed.",
+          "effect": {
+            "truth": 4,
+            "happiness": -5,
+            "autonomy": 14
+          },
+          "tags": ["autonomy_up", "unrest"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 5,
+            "happiness": 2,
+            "autonomy": 6
+          },
+          "tags": ["balanced_growth"]
+        }
+      ]
+    },
+    {
+      "id": "e2q04",
+      "tags": ["autonomy", "governance"],
+      "prompt": "A revolution overthrows a monarchy, but the new government struggles with creating fair representation.",
+      "choices": [
+        {
+          "label": "Subtly guide key leaders toward creating checks and balances.",
+          "effect": {
+            "truth": 6,
+            "happiness": 4,
+            "autonomy": 12
+          },
+          "tags": ["autonomy_up", "balanced"]
+        },
+        {
+          "label": "Prevent assassinations of moderate voices during crucial debates.",
+          "effect": {
+            "truth": 2,
+            "happiness": 8,
+            "autonomy": 6
+          },
+          "tags": ["happiness_up", "protection"]
+        },
+        {
+          "label": "Send dreams of unity and purpose to the factional leaders.",
+          "effect": {
+            "truth": -7,
+            "happiness": 9,
+            "autonomy": -8
+          },
+          "tags": ["happiness_up", "manipulation"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 0,
+            "happiness": -10,
+            "autonomy": 4
+          },
+          "tags": ["autonomy_up", "struggle"]
+        }
+      ]
+    },
+    {
+      "id": "e2q05",
+      "tags": ["happiness", "medicine"],
+      "prompt": "Physicians discover vaccinations, but many fear these new treatments as unnatural.",
+      "choices": [
+        {
+          "label": "Make those who take the vaccines visibly healthier over time.",
+          "effect": {
+            "truth": -4,
+            "happiness": 15,
+            "autonomy": -5
+          },
+          "tags": ["happiness_up", "autonomy_down"]
+        },
+        {
+          "label": "Guide researchers to publish compelling evidence of effectiveness.",
+          "effect": {
+            "truth": 12,
+            "happiness": 7,
+            "autonomy": 3
+          },
+          "tags": ["truth_up", "happiness_up"]
+        },
+        {
+          "label": "Inspire cultural leaders to adopt vaccination first.",
+          "effect": {
+            "truth": 0,
+            "happiness": 9,
+            "autonomy": 5
+          },
+          "tags": ["happiness_up", "social_influence"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 4,
+            "happiness": -8,
+            "autonomy": 9
+          },
+          "tags": ["autonomy_up", "natural_selection"]
+        }
+      ]
+    },
+    {
+      "id": "e2q06",
+      "tags": ["truth", "astronomy"],
+      "prompt": "Astronomers discover a planet beyond their solar system, challenging religious cosmology.",
+      "choices": [
+        {
+          "label": "Subtly enhance their telescopes to reveal even more celestial bodies.",
+          "effect": {
+            "truth": 14,
+            "happiness": -6,
+            "autonomy": 5
+          },
+          "tags": ["truth_up", "revelation"]
+        },
+        {
+          "label": "Inspire theological scholars to reinterpret ancient texts in light of discoveries.",
+          "effect": {
+            "truth": 7,
+            "happiness": 8,
+            "autonomy": -3
+          },
+          "tags": ["truth_up", "happiness_up"]
+        },
+        {
+          "label": "Cause atmospheric disturbances that make further observations difficult.",
+          "effect": {
+            "truth": -10,
+            "happiness": 6,
+            "autonomy": -5
+          },
+          "tags": ["truth_down", "preservation"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 5,
+            "happiness": -5,
+            "autonomy": 7
+          },
+          "tags": ["truth_up", "autonomy_up"]
+        }
+      ]
+    },
+    {
+      "id": "e2q09",
+      "tags": ["happiness", "economics"],
+      "prompt": "A new economic theory promotes shared ownership of production means rather than private capital.",
+      "choices": [
+        {
+          "label": "Guide theorists toward a balanced approach that preserves innovation.",
+          "effect": {
+            "truth": 5,
+            "happiness": 10,
+            "autonomy": 6
+          },
+          "tags": ["happiness_up", "balanced"]
+        },
+        {
+          "label": "Subtle influence to prevent the theory from becoming dogmatic.",
+          "effect": {
+            "truth": 8,
+            "happiness": 5,
+            "autonomy": 9
+          },
+          "tags": ["truth_up", "autonomy_up"]
+        },
+        {
+          "label": "Ensure the theory spreads rapidly among the working class.",
+          "effect": {
+            "truth": -5,
+            "happiness": 7,
+            "autonomy": 12
+          },
+          "tags": ["autonomy_up", "social_movement"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 0,
+            "happiness": -7,
+            "autonomy": 5
+          },
+          "tags": ["autonomy_up", "struggle"]
+        }
+      ]
+    },
+    {
+      "id": "e2q10",
+      "tags": ["autonomy", "transportation"],
+      "prompt": "Engineers create locomotives that connect distant regions, centralizing government control.",
+      "choices": [
+        {
+          "label": "Subtly influence the design to allow local communities to operate their own lines.",
+          "effect": {
+            "truth": 3,
+            "happiness": 5,
+            "autonomy": 14
+          },
+          "tags": ["autonomy_up", "decentralization"]
+        },
+        {
+          "label": "Inspire a complementary telegraph system that connects remote areas.",
+          "effect": {
+            "truth": 8,
+            "happiness": 6,
+            "autonomy": 7
+          },
+          "tags": ["truth_up", "autonomy_up"]
+        },
+        {
+          "label": "Guide planners to prioritize cultural exchange over military transport.",
+          "effect": {
+            "truth": 4,
+            "happiness": 12,
+            "autonomy": -3
+          },
+          "tags": ["happiness_up", "cultural"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 0,
+            "happiness": 4,
+            "autonomy": -8
+          },
+          "tags": ["autonomy_down", "centralization"]
+        }
+      ]
+    },
+    {
+      "id": "e2q11",
+      "tags": ["truth", "chemistry"],
+      "prompt": "Chemists discover radioactive elements with both promising and dangerous properties.",
+      "choices": [
+        {
+          "label": "Guide researchers toward medical applications while hiding weapons potential.",
+          "effect": {
+            "truth": -6,
+            "happiness": 12,
+            "autonomy": -4
+          },
+          "tags": ["happiness_up", "manipulation"]
+        },
+        {
+          "label": "Send insights about proper containment and safety protocols.",
+          "effect": {
+            "truth": 10,
+            "happiness": 7,
+            "autonomy": 2
+          },
+          "tags": ["truth_up", "happiness_up"]
+        },
+        {
+          "label": "Make dangerous experiments subtly fail until technology matures.",
+          "effect": {
+            "truth": -8,
+            "happiness": 4,
+            "autonomy": -9
+          },
+          "tags": ["safety", "autonomy_down"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 8,
+            "happiness": -7,
+            "autonomy": 10
+          },
+          "tags": ["truth_up", "autonomy_up"]
+        }
+      ]
+    },
+    {
+      "id": "e2q12",
+      "tags": ["happiness", "entertainment"],
+      "prompt": "Motion pictures are invented, creating a powerful new medium for storytelling and influence.",
+      "choices": [
+        {
+          "label": "Inspire filmmakers to create works exploring profound human truths.",
+          "effect": {
+            "truth": 9,
+            "happiness": 8,
+            "autonomy": 4
+          },
+          "tags": ["truth_up", "happiness_up"]
+        },
+        {
+          "label": "Subtly enhance the emotional impact of early films.",
+          "effect": {
+            "truth": -6,
+            "happiness": 14,
+            "autonomy": -4
+          },
+          "tags": ["happiness_up", "manipulation"]
+        },
+        {
+          "label": "Guide the technology to become widely accessible for amateur creators.",
+          "effect": {
+            "truth": 3,
+            "happiness": 5,
+            "autonomy": 13
+          },
+          "tags": ["autonomy_up", "democratization"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 0,
+            "happiness": 7,
+            "autonomy": 5
+          },
+          "tags": ["happiness_up", "cultural_development"]
+        }
+      ]
+    }
+  ]
+}

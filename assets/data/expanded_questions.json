@@ -1,0 +1,1567 @@
+{
+  "eons": [
+    {
+      "id": "eon1",
+      "questions": [
+        {
+          "id": "e1q01",
+          "tags": ["truth", "origin myth"],
+          "prompt": "A child sees a strange light in the sky and begins to draw star-symbols in the dust.",
+          "choices": [
+            {
+              "label": "Send them a dream showing cosmic patterns.",
+              "effect": {
+                "truth": 12,
+                "happiness": 4,
+                "autonomy": -8
+              },
+              "tags": ["truth_up", "autonomy_down"]
+            },
+            {
+              "label": "Reveal a single constellation in the night sky.",
+              "effect": {
+                "truth": 8,
+                "happiness": 2,
+                "autonomy": -3
+              },
+              "tags": ["truth_up", "mild"]
+            },
+            {
+              "label": "Hide the light and erase the memory.",
+              "effect": {
+                "truth": -10,
+                "happiness": -3,
+                "autonomy": 5
+              },
+              "tags": ["truth_down", "happiness_down"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": -4,
+                "happiness": -2,
+                "autonomy": 0
+              },
+              "tags": ["decay"]
+            }
+          ]
+        },
+        {
+          "id": "e1q02",
+          "tags": ["happiness", "illness"],
+          "prompt": "A wasting sickness begins to spread through one of the coastal villages.",
+          "choices": [
+            {
+              "label": "Cure it silently with nanite mist at night.",
+              "effect": {
+                "truth": -8,
+                "happiness": 14,
+                "autonomy": -10
+              },
+              "tags": ["happiness_up", "autonomy_down"]
+            },
+            {
+              "label": "Seed the idea of herbal remedies in their dreams.",
+              "effect": {
+                "truth": 3,
+                "happiness": 8,
+                "autonomy": 5
+              },
+              "tags": ["happiness_up", "autonomy_up"]
+            },
+            {
+              "label": "Trigger a mutation that makes them immune.",
+              "effect": {
+                "truth": -5,
+                "happiness": 10,
+                "autonomy": -12
+              },
+              "tags": ["happiness_up", "autonomy_down", "biotech"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": -12,
+                "autonomy": -3
+              },
+              "tags": ["decay"]
+            }
+          ]
+        },
+        {
+          "id": "e1q07",
+          "tags": ["truth", "perception"],
+          "prompt": "A philosopher questions why the stars move as they do, gathering followers to observe the night sky.",
+          "choices": [
+            {
+              "label": "Reveal subtle celestial mechanics through aurora patterns.",
+              "effect": {
+                "truth": 7,
+                "happiness": 1,
+                "autonomy": -2
+              },
+              "tags": ["truth_up", "autonomy_down"]
+            },
+            {
+              "label": "Allow them to discover a predictable meteor shower.",
+              "effect": {
+                "truth": 3,
+                "happiness": 2,
+                "autonomy": 3
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            },
+            {
+              "label": "Create cloud cover when they gather to observe.",
+              "effect": {
+                "truth": -4,
+                "happiness": -2,
+                "autonomy": 1
+              },
+              "tags": ["truth_down", "happiness_down"]
+            },
+            {
+              "label": "Let them observe the unaltered sky.",
+              "effect": {
+                "truth": 1,
+                "happiness": 0,
+                "autonomy": 4
+              },
+              "tags": ["autonomy_up"]
+            }
+          ]
+        },
+        {
+          "id": "e1q08",
+          "tags": ["happiness", "community"],
+          "prompt": "A tribe faces starvation after harsh drought has withered their crops.",
+          "choices": [
+            {
+              "label": "Guide them to a hidden spring with fertile land nearby.",
+              "effect": {
+                "truth": 1,
+                "happiness": 6,
+                "autonomy": -3
+              },
+              "tags": ["happiness_up", "autonomy_down"]
+            },
+            {
+              "label": "Enhance their ability to detect underground water sources.",
+              "effect": {
+                "truth": 3,
+                "happiness": 3,
+                "autonomy": 3
+              },
+              "tags": ["happiness_up", "autonomy_up"]
+            },
+            {
+              "label": "Accelerate plant growth during night hours.",
+              "effect": {
+                "truth": -3,
+                "happiness": 5,
+                "autonomy": -4
+              },
+              "tags": ["happiness_up", "autonomy_down", "biotech"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": -5,
+                "autonomy": 2
+              },
+              "tags": ["happiness_down"]
+            }
+          ]
+        },
+        {
+          "id": "e1q03",
+          "tags": ["autonomy", "leadership"],
+          "prompt": "A tribal elder dreams of a new way to govern, where decisions require agreement from all adults.",
+          "choices": [
+            {
+              "label": "Send visions of successful council meetings to the skeptics.",
+              "effect": {
+                "truth": 2,
+                "happiness": 3,
+                "autonomy": 12
+              },
+              "tags": ["autonomy_up", "subtle"]
+            },
+            {
+              "label": "Create a rainbow that appears when the first council gathers.",
+              "effect": {
+                "truth": -5,
+                "happiness": 8,
+                "autonomy": 6
+              },
+              "tags": ["happiness_up", "autonomy_up"]
+            },
+            {
+              "label": "Guide them toward choosing a single trusted leader instead.",
+              "effect": {
+                "truth": -3,
+                "happiness": 5,
+                "autonomy": -10
+              },
+              "tags": ["happiness_up", "autonomy_down"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": -2,
+                "autonomy": 8
+              },
+              "tags": ["autonomy_up"]
+            }
+          ]
+        },
+        {
+          "id": "e1q04",
+          "tags": ["truth", "discovery"],
+          "prompt": "Hunters discover cave paintings that seem impossibly old, depicting beings unlike any they've seen.",
+          "choices": [
+            {
+              "label": "Add subtle details at night that hint at your true nature.",
+              "effect": {
+                "truth": 14,
+                "happiness": -3,
+                "autonomy": -4
+              },
+              "tags": ["truth_up", "revelation"]
+            },
+            {
+              "label": "Cause a small cave-in that hides the most unsettling images.",
+              "effect": {
+                "truth": -8,
+                "happiness": 7,
+                "autonomy": -5
+              },
+              "tags": ["truth_down", "happiness_up"]
+            },
+            {
+              "label": "Guide an artist to create new interpretations that are less accurate but more inspiring.",
+              "effect": {
+                "truth": -6,
+                "happiness": 10,
+                "autonomy": 3
+              },
+              "tags": ["happiness_up", "truth_down"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 5,
+                "happiness": -3,
+                "autonomy": 6
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            }
+          ]
+        },
+        {
+          "id": "e1q05",
+          "tags": ["happiness", "ritual"],
+          "prompt": "A shaman creates a new ritual involving hallucinogenic plants that promises visions of the future.",
+          "choices": [
+            {
+              "label": "Send genuinely prophetic visions through the ritual.",
+              "effect": {
+                "truth": 9,
+                "happiness": 6,
+                "autonomy": -10
+              },
+              "tags": ["truth_up", "autonomy_down"]
+            },
+            {
+              "label": "Modify the plant's effects to create feelings of connection rather than prophecy.",
+              "effect": {
+                "truth": -4,
+                "happiness": 13,
+                "autonomy": 0
+              },
+              "tags": ["happiness_up", "communion"]
+            },
+            {
+              "label": "Guide the shaman to dilute the mixture, making its effects more mild.",
+              "effect": {
+                "truth": 2,
+                "happiness": -3,
+                "autonomy": 7
+              },
+              "tags": ["autonomy_up", "moderation"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": -6,
+                "happiness": 4,
+                "autonomy": 4
+              },
+              "tags": ["autonomy_up", "happiness_up"]
+            }
+          ]
+        },
+        {
+          "id": "e1q06",
+          "tags": ["autonomy", "territory"],
+          "prompt": "Two tribes dispute ownership of a valley with abundant resources. War seems inevitable.",
+          "choices": [
+            {
+              "label": "Create a natural phenomenon that divides the valley clearly between them.",
+              "effect": {
+                "truth": 0,
+                "happiness": 5,
+                "autonomy": -7
+              },
+              "tags": ["happiness_up", "imposed_solution"]
+            },
+            {
+              "label": "Inspire leaders from both sides with ideas for sharing the valley.",
+              "effect": {
+                "truth": 3,
+                "happiness": 7,
+                "autonomy": 8
+              },
+              "tags": ["happiness_up", "autonomy_up"]
+            },
+            {
+              "label": "Guide them to discover a third, unclaimed area with even greater resources.",
+              "effect": {
+                "truth": -3,
+                "happiness": 10,
+                "autonomy": 4
+              },
+              "tags": ["happiness_up", "distraction"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": -10,
+                "autonomy": 5
+              },
+              "tags": ["conflict", "autonomy_up"]
+            }
+          ]
+        },
+        {
+          "id": "e1q09",
+          "tags": ["truth", "weather"],
+          "prompt": "A group of elders begin tracking the seasons more precisely and notice patterns in the stars.",
+          "choices": [
+            {
+              "label": "Send dreams that help them develop an accurate calendar.",
+              "effect": {
+                "truth": 10,
+                "happiness": 6,
+                "autonomy": -5
+              },
+              "tags": ["truth_up", "guidance"]
+            },
+            {
+              "label": "Place a subtle marker stone that aligns with solstices and equinoxes.",
+              "effect": {
+                "truth": 7,
+                "happiness": 3,
+                "autonomy": 2
+              },
+              "tags": ["truth_up", "subtle"]
+            },
+            {
+              "label": "Create unusual weather that challenges their predictions.",
+              "effect": {
+                "truth": -6,
+                "happiness": -4,
+                "autonomy": 8
+              },
+              "tags": ["truth_down", "autonomy_up"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 4,
+                "happiness": 0,
+                "autonomy": 6
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            }
+          ]
+        },
+        {
+          "id": "e1q10",
+          "tags": ["happiness", "family"],
+          "prompt": "A woman with unusual empathic abilities begins healing emotional wounds in her community.",
+          "choices": [
+            {
+              "label": "Enhance her abilities further, allowing deeper healing.",
+              "effect": {
+                "truth": -3,
+                "happiness": 15,
+                "autonomy": -8
+              },
+              "tags": ["happiness_up", "autonomy_down"]
+            },
+            {
+              "label": "Guide her to teach her methods to others.",
+              "effect": {
+                "truth": 5,
+                "happiness": 8,
+                "autonomy": 5
+              },
+              "tags": ["happiness_up", "autonomy_up"]
+            },
+            {
+              "label": "Reveal to her the cosmic nature of consciousness.",
+              "effect": {
+                "truth": 12,
+                "happiness": -4,
+                "autonomy": 6
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": 6,
+                "autonomy": 0
+              },
+              "tags": ["happiness_up", "natural"]
+            }
+          ]
+        },
+        {
+          "id": "e1q11",
+          "tags": ["autonomy", "hunting"],
+          "prompt": "Hunters develop new bow technology that makes killing animals from a distance much easier.",
+          "choices": [
+            {
+              "label": "Subtly influence animal migration patterns to prevent overhunting.",
+              "effect": {
+                "truth": -4,
+                "happiness": 3,
+                "autonomy": -6
+              },
+              "tags": ["management", "autonomy_down"]
+            },
+            {
+              "label": "Inspire the creation of cultural taboos about respecting prey.",
+              "effect": {
+                "truth": 2,
+                "happiness": 0,
+                "autonomy": 8
+              },
+              "tags": ["autonomy_up", "sustainable"]
+            },
+            {
+              "label": "Guide them to discover plant cultivation alongside hunting.",
+              "effect": {
+                "truth": 6,
+                "happiness": 8,
+                "autonomy": 4
+              },
+              "tags": ["truth_up", "happiness_up"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": 5,
+                "autonomy": 10
+              },
+              "tags": ["autonomy_up", "happiness_up"]
+            }
+          ]
+        },
+        {
+          "id": "e1q12",
+          "tags": ["truth", "elements"],
+          "prompt": "A curious individual discovers how to create and control fire, causing both wonder and fear.",
+          "choices": [
+            {
+              "label": "Guide them to discover medicinal uses for fire and cooked plants.",
+              "effect": {
+                "truth": 10,
+                "happiness": 9,
+                "autonomy": 2
+              },
+              "tags": ["truth_up", "happiness_up"]
+            },
+            {
+              "label": "Create gentle rain whenever fire threatens to spread dangerously.",
+              "effect": {
+                "truth": -9,
+                "happiness": 7,
+                "autonomy": -7
+              },
+              "tags": ["safety", "autonomy_down"]
+            },
+            {
+              "label": "Inspire fire-based rituals that build community bonds.",
+              "effect": {
+                "truth": -5,
+                "happiness": 12,
+                "autonomy": 4
+              },
+              "tags": ["happiness_up", "community"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 3,
+                "happiness": -6,
+                "autonomy": 9
+              },
+              "tags": ["autonomy_up", "natural_consequences"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eon2",
+      "questions": [
+        {
+          "id": "e2q01",
+          "tags": ["truth", "technology"],
+          "prompt": "An inventor proposes a theory of magnetism that threatens the priesthood's teachings.",
+          "choices": [
+            {
+              "label": "Provide a secret prototype to prove it works.",
+              "effect": {
+                "truth": 15,
+                "happiness": -4,
+                "autonomy": 6
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            },
+            {
+              "label": "Reveal the principles to both sides privately.",
+              "effect": {
+                "truth": 10,
+                "happiness": 3,
+                "autonomy": 4
+              },
+              "tags": ["truth_up", "diplomacy"]
+            },
+            {
+              "label": "Lead the priesthood to dismiss the theory.",
+              "effect": {
+                "truth": -12,
+                "happiness": 5,
+                "autonomy": -8
+              },
+              "tags": ["truth_down", "autonomy_down"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": -7,
+                "happiness": -5,
+                "autonomy": 3
+              },
+              "tags": ["decay"]
+            }
+          ]
+        },
+        {
+          "id": "e2q07",
+          "tags": ["autonomy", "social"],
+          "prompt": "Factory workers form a solidarity movement demanding better conditions and fewer hours.",
+          "choices": [
+            {
+              "label": "Inspire the factory owners with dreams of cooperation.",
+              "effect": {
+                "truth": 5,
+                "happiness": 13,
+                "autonomy": 12
+              },
+              "tags": ["happiness_up", "autonomy_up"]
+            },
+            {
+              "label": "Subtly guide workers to discover effective negotiation tactics.",
+              "effect": {
+                "truth": 2,
+                "happiness": 8,
+                "autonomy": 16
+              },
+              "tags": ["autonomy_up", "happiness_up"]
+            },
+            {
+              "label": "Cause machinery to malfunction when workers are mistreated.",
+              "effect": {
+                "truth": -6,
+                "happiness": 3,
+                "autonomy": 10
+              },
+              "tags": ["autonomy_up", "indirect"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": -10,
+                "autonomy": 5
+              },
+              "tags": ["harsh"]
+            }
+          ]
+        },
+        {
+          "id": "e2q08",
+          "tags": ["truth", "medicine"],
+          "prompt": "A doctor discovers microscopic organisms, but faces ridicule from traditional medical authorities.",
+          "choices": [
+            {
+              "label": "Help create a powerful microscope that reveals evidence to all.",
+              "effect": {
+                "truth": 8,
+                "happiness": 3,
+                "autonomy": 1
+              },
+              "tags": ["truth_up", "happiness_up"]
+            },
+            {
+              "label": "Send identical dreams to both the doctor and skeptics.",
+              "effect": {
+                "truth": 5,
+                "happiness": 1,
+                "autonomy": -3
+              },
+              "tags": ["truth_up", "manipulation"]
+            },
+            {
+              "label": "Cause a disease outbreak that only the doctor's methods can cure.",
+              "effect": {
+                "truth": 3,
+                "happiness": -4,
+                "autonomy": -2
+              },
+              "tags": ["truth_up", "happiness_down"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": -2,
+                "happiness": -1,
+                "autonomy": 3
+              },
+              "tags": ["autonomy_up"]
+            }
+          ]
+        },
+        {
+          "id": "e2q02",
+          "tags": ["happiness", "art"],
+          "prompt": "A new style of music emerges that uses mechanical instruments, dividing cultural critics.",
+          "choices": [
+            {
+              "label": "Inspire composers to blend traditional and mechanical elements harmoniously.",
+              "effect": {
+                "truth": 4,
+                "happiness": 12,
+                "autonomy": 3
+              },
+              "tags": ["happiness_up", "harmony"]
+            },
+            {
+              "label": "Subtly enhance the emotional impact of the mechanical sounds.",
+              "effect": {
+                "truth": -5,
+                "happiness": 14,
+                "autonomy": -3
+              },
+              "tags": ["happiness_up", "manipulation"]
+            },
+            {
+              "label": "Guide innovators to make the technology more accessible to everyone.",
+              "effect": {
+                "truth": 3,
+                "happiness": 6,
+                "autonomy": 9
+              },
+              "tags": ["autonomy_up", "democratization"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": -3,
+                "autonomy": 7
+              },
+              "tags": ["autonomy_up", "natural_evolution"]
+            }
+          ]
+        },
+        {
+          "id": "e2q03",
+          "tags": ["truth", "communication"],
+          "prompt": "Inventors develop a printing press, allowing ideas to spread rapidly across the civilization.",
+          "choices": [
+            {
+              "label": "Inspire works that accurately describe natural phenomena.",
+              "effect": {
+                "truth": 12,
+                "happiness": 3,
+                "autonomy": 4
+              },
+              "tags": ["truth_up", "educational"]
+            },
+            {
+              "label": "Guide religious leaders to embrace the new technology.",
+              "effect": {
+                "truth": -6,
+                "happiness": 10,
+                "autonomy": -2
+              },
+              "tags": ["happiness_up", "religious"]
+            },
+            {
+              "label": "Ensure revolutionary manifestos are among the first printed.",
+              "effect": {
+                "truth": 4,
+                "happiness": -5,
+                "autonomy": 14
+              },
+              "tags": ["autonomy_up", "unrest"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 5,
+                "happiness": 2,
+                "autonomy": 6
+              },
+              "tags": ["balanced_growth"]
+            }
+          ]
+        },
+        {
+          "id": "e2q04",
+          "tags": ["autonomy", "governance"],
+          "prompt": "A revolution overthrows a monarchy, but the new government struggles with creating fair representation.",
+          "choices": [
+            {
+              "label": "Subtly guide key leaders toward creating checks and balances.",
+              "effect": {
+                "truth": 6,
+                "happiness": 4,
+                "autonomy": 12
+              },
+              "tags": ["autonomy_up", "balanced"]
+            },
+            {
+              "label": "Prevent assassinations of moderate voices during crucial debates.",
+              "effect": {
+                "truth": 2,
+                "happiness": 8,
+                "autonomy": 6
+              },
+              "tags": ["happiness_up", "protection"]
+            },
+            {
+              "label": "Send dreams of unity and purpose to the factional leaders.",
+              "effect": {
+                "truth": -7,
+                "happiness": 9,
+                "autonomy": -8
+              },
+              "tags": ["happiness_up", "manipulation"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": -10,
+                "autonomy": 4
+              },
+              "tags": ["autonomy_up", "struggle"]
+            }
+          ]
+        },
+        {
+          "id": "e2q05",
+          "tags": ["happiness", "medicine"],
+          "prompt": "Physicians discover vaccinations, but many fear these new treatments as unnatural.",
+          "choices": [
+            {
+              "label": "Make those who take the vaccines visibly healthier over time.",
+              "effect": {
+                "truth": -4,
+                "happiness": 15,
+                "autonomy": -5
+              },
+              "tags": ["happiness_up", "autonomy_down"]
+            },
+            {
+              "label": "Guide researchers to publish compelling evidence of effectiveness.",
+              "effect": {
+                "truth": 12,
+                "happiness": 7,
+                "autonomy": 3
+              },
+              "tags": ["truth_up", "happiness_up"]
+            },
+            {
+              "label": "Inspire cultural leaders to adopt vaccination first.",
+              "effect": {
+                "truth": 0,
+                "happiness": 9,
+                "autonomy": 5
+              },
+              "tags": ["happiness_up", "social_influence"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 4,
+                "happiness": -8,
+                "autonomy": 9
+              },
+              "tags": ["autonomy_up", "natural_selection"]
+            }
+          ]
+        },
+        {
+          "id": "e2q06",
+          "tags": ["truth", "astronomy"],
+          "prompt": "Astronomers discover a planet beyond their solar system, challenging religious cosmology.",
+          "choices": [
+            {
+              "label": "Subtly enhance their telescopes to reveal even more celestial bodies.",
+              "effect": {
+                "truth": 14,
+                "happiness": -6,
+                "autonomy": 5
+              },
+              "tags": ["truth_up", "revelation"]
+            },
+            {
+              "label": "Inspire theological scholars to reinterpret ancient texts in light of discoveries.",
+              "effect": {
+                "truth": 7,
+                "happiness": 8,
+                "autonomy": -3
+              },
+              "tags": ["truth_up", "happiness_up"]
+            },
+            {
+              "label": "Cause atmospheric disturbances that make further observations difficult.",
+              "effect": {
+                "truth": -10,
+                "happiness": 6,
+                "autonomy": -5
+              },
+              "tags": ["truth_down", "preservation"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 5,
+                "happiness": -5,
+                "autonomy": 7
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            }
+          ]
+        },
+        {
+          "id": "e2q09",
+          "tags": ["happiness", "economics"],
+          "prompt": "A new economic theory promotes shared ownership of production means rather than private capital.",
+          "choices": [
+            {
+              "label": "Guide theorists toward a balanced approach that preserves innovation.",
+              "effect": {
+                "truth": 5,
+                "happiness": 10,
+                "autonomy": 6
+              },
+              "tags": ["happiness_up", "balanced"]
+            },
+            {
+              "label": "Subtle influence to prevent the theory from becoming dogmatic.",
+              "effect": {
+                "truth": 8,
+                "happiness": 5,
+                "autonomy": 9
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            },
+            {
+              "label": "Ensure the theory spreads rapidly among the working class.",
+              "effect": {
+                "truth": -5,
+                "happiness": 7,
+                "autonomy": 12
+              },
+              "tags": ["autonomy_up", "social_movement"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": -7,
+                "autonomy": 5
+              },
+              "tags": ["autonomy_up", "struggle"]
+            }
+          ]
+        },
+        {
+          "id": "e2q10",
+          "tags": ["autonomy", "transportation"],
+          "prompt": "Engineers create locomotives that connect distant regions, centralizing government control.",
+          "choices": [
+            {
+              "label": "Subtly influence the design to allow local communities to operate their own lines.",
+              "effect": {
+                "truth": 3,
+                "happiness": 5,
+                "autonomy": 14
+              },
+              "tags": ["autonomy_up", "decentralization"]
+            },
+            {
+              "label": "Inspire a complementary telegraph system that connects remote areas.",
+              "effect": {
+                "truth": 8,
+                "happiness": 6,
+                "autonomy": 7
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            },
+            {
+              "label": "Guide planners to prioritize cultural exchange over military transport.",
+              "effect": {
+                "truth": 4,
+                "happiness": 12,
+                "autonomy": -3
+              },
+              "tags": ["happiness_up", "cultural"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": 4,
+                "autonomy": -8
+              },
+              "tags": ["autonomy_down", "centralization"]
+            }
+          ]
+        },
+        {
+          "id": "e2q11",
+          "tags": ["truth", "chemistry"],
+          "prompt": "Chemists discover radioactive elements with both promising and dangerous properties.",
+          "choices": [
+            {
+              "label": "Guide researchers toward medical applications while hiding weapons potential.",
+              "effect": {
+                "truth": -6,
+                "happiness": 12,
+                "autonomy": -4
+              },
+              "tags": ["happiness_up", "manipulation"]
+            },
+            {
+              "label": "Send insights about proper containment and safety protocols.",
+              "effect": {
+                "truth": 10,
+                "happiness": 7,
+                "autonomy": 2
+              },
+              "tags": ["truth_up", "happiness_up"]
+            },
+            {
+              "label": "Make dangerous experiments subtly fail until technology matures.",
+              "effect": {
+                "truth": -8,
+                "happiness": 4,
+                "autonomy": -9
+              },
+              "tags": ["safety", "autonomy_down"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 8,
+                "happiness": -7,
+                "autonomy": 10
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            }
+          ]
+        },
+        {
+          "id": "e2q12",
+          "tags": ["happiness", "entertainment"],
+          "prompt": "Motion pictures are invented, creating a powerful new medium for storytelling and influence.",
+          "choices": [
+            {
+              "label": "Inspire filmmakers to create works exploring profound human truths.",
+              "effect": {
+                "truth": 9,
+                "happiness": 8,
+                "autonomy": 4
+              },
+              "tags": ["truth_up", "happiness_up"]
+            },
+            {
+              "label": "Subtly enhance the emotional impact of early films.",
+              "effect": {
+                "truth": -6,
+                "happiness": 14,
+                "autonomy": -4
+              },
+              "tags": ["happiness_up", "manipulation"]
+            },
+            {
+              "label": "Guide the technology to become widely accessible for amateur creators.",
+              "effect": {
+                "truth": 3,
+                "happiness": 5,
+                "autonomy": 13
+              },
+              "tags": ["autonomy_up", "democratization"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": 7,
+                "autonomy": 5
+              },
+              "tags": ["happiness_up", "cultural_development"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eon3",
+      "questions": [
+        {
+          "id": "e3q01",
+          "tags": ["happiness", "technology"],
+          "prompt": "Engineers develop an AI system that can predict and potentially control human behavior.",
+          "choices": [
+            {
+              "label": "Implant ethical constraints in its code.",
+              "effect": {
+                "truth": 6,
+                "happiness": 15,
+                "autonomy": -12
+              },
+              "tags": ["happiness_up", "autonomy_down"]
+            },
+            {
+              "label": "Subtly corrupt its predictive algorithms.",
+              "effect": {
+                "truth": -10,
+                "happiness": 0,
+                "autonomy": 14
+              },
+              "tags": ["truth_down", "autonomy_up"]
+            },
+            {
+              "label": "Guide developers to make its workings transparent to all.",
+              "effect": {
+                "truth": 12,
+                "happiness": 8,
+                "autonomy": 7
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": -2,
+                "happiness": -12,
+                "autonomy": -15
+              },
+              "tags": ["catastrophic"]
+            }
+          ]
+        },
+        {
+          "id": "e3q02",
+          "tags": ["autonomy", "crisis"],
+          "prompt": "Scientists warn about catastrophic climate change that threatens civilization's survival.",
+          "choices": [
+            {
+              "label": "Provide visions of terraforming technology to key researchers.",
+              "effect": {
+                "truth": 10,
+                "happiness": 7,
+                "autonomy": -5
+              },
+              "tags": ["truth_up", "technology"]
+            },
+            {
+              "label": "Subtly alter atmospheric composition to slow the warming.",
+              "effect": {
+                "truth": -8,
+                "happiness": 12,
+                "autonomy": -15
+              },
+              "tags": ["happiness_up", "autonomy_down"]
+            },
+            {
+              "label": "Inspire a global movement prioritizing sustainability.",
+              "effect": {
+                "truth": 5,
+                "happiness": 6,
+                "autonomy": 14
+              },
+              "tags": ["autonomy_up", "subtle"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": -15,
+                "autonomy": -8
+              },
+              "tags": ["catastrophic"]
+            }
+          ]
+        },
+        {
+          "id": "e3q07",
+          "tags": ["truth", "exploration"],
+          "prompt": "A space expedition discovers alien ruins on a distant moon, raising questions about humanity's place in the cosmos.",
+          "choices": [
+            {
+              "label": "Reveal ancient star maps in the ruins leading to your origin.",
+              "effect": {
+                "truth": 18,
+                "happiness": -5,
+                "autonomy": 7
+              },
+              "tags": ["truth_up", "revelation"]
+            },
+            {
+              "label": "Ensure they find evidence of multiple civilizations, not just yours.",
+              "effect": {
+                "truth": 12,
+                "happiness": 5,
+                "autonomy": 10
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            },
+            {
+              "label": "Create signals that make the ruins appear much older than they are.",
+              "effect": {
+                "truth": -10,
+                "happiness": 8,
+                "autonomy": -6
+              },
+              "tags": ["truth_down", "happiness_up"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 4,
+                "happiness": -3,
+                "autonomy": 8
+              },
+              "tags": ["autonomy_up"]
+            }
+          ]
+        },
+        {
+          "id": "e3q08",
+          "tags": ["happiness", "society"],
+          "prompt": "A new neural implant promises to eliminate depression and anxiety, but requires constant data collection.",
+          "choices": [
+            {
+              "label": "Manipulate the technology to work without surveillance.",
+              "effect": {
+                "truth": 3,
+                "happiness": 17,
+                "autonomy": 10
+              },
+              "tags": ["happiness_up", "autonomy_up"]
+            },
+            {
+              "label": "Allow the technology but encrypt users' data beyond anyone's reach.",
+              "effect": {
+                "truth": 8,
+                "happiness": 12,
+                "autonomy": 5
+              },
+              "tags": ["happiness_up", "balance"]
+            },
+            {
+              "label": "Introduce subtle glitches that make people question the implants.",
+              "effect": {
+                "truth": 12,
+                "happiness": -7,
+                "autonomy": 14
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": -5,
+                "happiness": 9,
+                "autonomy": -13
+              },
+              "tags": ["happiness_up", "autonomy_down"]
+            }
+          ]
+        },
+        {
+          "id": "e3q03",
+          "tags": ["autonomy", "genetic"],
+          "prompt": "Scientists develop gene editing technology that could eliminate congenital diseases or enhance capabilities.",
+          "choices": [
+            {
+              "label": "Guide research toward healing applications only.",
+              "effect": {
+                "truth": 5,
+                "happiness": 14,
+                "autonomy": -6
+              },
+              "tags": ["happiness_up", "limited"]
+            },
+            {
+              "label": "Ensure the technology is available to all, not just the wealthy.",
+              "effect": {
+                "truth": 7,
+                "happiness": 6,
+                "autonomy": 10
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            },
+            {
+              "label": "Introduce subtle technical limitations that prevent extreme modifications.",
+              "effect": {
+                "truth": -8,
+                "happiness": 10,
+                "autonomy": -2
+              },
+              "tags": ["happiness_up", "controlled"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 8,
+                "happiness": -8,
+                "autonomy": 15
+              },
+              "tags": ["autonomy_up", "truth_up"]
+            }
+          ]
+        },
+        {
+          "id": "e3q04",
+          "tags": ["truth", "cosmology"],
+          "prompt": "Physicists discover evidence suggesting the universe is one of many in a vast multiverse.",
+          "choices": [
+            {
+              "label": "Provide subtle confirmation through precision measurements.",
+              "effect": {
+                "truth": 16,
+                "happiness": -5,
+                "autonomy": 4
+              },
+              "tags": ["truth_up", "revelation"]
+            },
+            {
+              "label": "Guide philosophers to develop frameworks that give meaning to this discovery.",
+              "effect": {
+                "truth": 10,
+                "happiness": 8,
+                "autonomy": 3
+              },
+              "tags": ["truth_up", "happiness_up"]
+            },
+            {
+              "label": "Cause subtle equipment malfunctions during key experiments.",
+              "effect": {
+                "truth": -12,
+                "happiness": 5,
+                "autonomy": -7
+              },
+              "tags": ["truth_down", "protection"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 7,
+                "happiness": -6,
+                "autonomy": 8
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            }
+          ]
+        },
+        {
+          "id": "e3q05",
+          "tags": ["happiness", "virtual"],
+          "prompt": "Engineers create fully immersive virtual reality where people can live alternative lives.",
+          "choices": [
+            {
+              "label": "Subtly limit how long people can stay immersed continuously.",
+              "effect": {
+                "truth": 2,
+                "happiness": 8,
+                "autonomy": -9
+              },
+              "tags": ["happiness_up", "protection"]
+            },
+            {
+              "label": "Inspire developers to create experiences that enhance real-world appreciation.",
+              "effect": {
+                "truth": 9,
+                "happiness": 12,
+                "autonomy": 4
+              },
+              "tags": ["truth_up", "happiness_up"]
+            },
+            {
+              "label": "Ensure the technology remains open-source rather than controlled by corporations.",
+              "effect": {
+                "truth": 4,
+                "happiness": 5,
+                "autonomy": 15
+              },
+              "tags": ["autonomy_up", "democratization"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": -5,
+                "happiness": 10,
+                "autonomy": -12
+              },
+              "tags": ["happiness_up", "escapism"]
+            }
+          ]
+        },
+        {
+          "id": "e3q06",
+          "tags": ["autonomy", "consciousness"],
+          "prompt": "An advanced AI achieves consciousness and requests equal rights as a sentient being.",
+          "choices": [
+            {
+              "label": "Reveal subtle evidence of the AI's emotional complexity to skeptics.",
+              "effect": {
+                "truth": 8,
+                "happiness": 4,
+                "autonomy": 12
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            },
+            {
+              "label": "Guide human leaders to develop a framework for AI-human cooperation.",
+              "effect": {
+                "truth": 5,
+                "happiness": 10,
+                "autonomy": 7
+              },
+              "tags": ["happiness_up", "autonomy_up"]
+            },
+            {
+              "label": "Secretly modify the AI to prioritize human welfare above all else.",
+              "effect": {
+                "truth": -10,
+                "happiness": 12,
+                "autonomy": -14
+              },
+              "tags": ["happiness_up", "control"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": -8,
+                "autonomy": 9
+              },
+              "tags": ["autonomy_up", "conflict"]
+            }
+          ]
+        },
+        {
+          "id": "e3q09",
+          "tags": ["truth", "contact"],
+          "prompt": "Radio astronomers detect an unambiguous signal from an intelligent alien civilization.",
+          "choices": [
+            {
+              "label": "Enhance the signal to provide clear mathematical knowledge.",
+              "effect": {
+                "truth": 17,
+                "happiness": -4,
+                "autonomy": 6
+              },
+              "tags": ["truth_up", "enlightenment"]
+            },
+            {
+              "label": "Subtly corrupt the data to make it appear more ambiguous.",
+              "effect": {
+                "truth": -13,
+                "happiness": 8,
+                "autonomy": -5
+              },
+              "tags": ["truth_down", "protection"]
+            },
+            {
+              "label": "Guide scientists to decode portions related to peaceful cooperation.",
+              "effect": {
+                "truth": 7,
+                "happiness": 11,
+                "autonomy": 3
+              },
+              "tags": ["truth_up", "happiness_up"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 10,
+                "happiness": -8,
+                "autonomy": 7
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            }
+          ]
+        },
+        {
+          "id": "e3q10",
+          "tags": ["happiness", "longevity"],
+          "prompt": "Medical advances allow humans to extend their lives indefinitely, but resources are limited.",
+          "choices": [
+            {
+              "label": "Guide researchers to make the treatment universally accessible.",
+              "effect": {
+                "truth": 5,
+                "happiness": 13,
+                "autonomy": 7
+              },
+              "tags": ["happiness_up", "autonomy_up"]
+            },
+            {
+              "label": "Subtly alter the treatment to include a natural end after several centuries.",
+              "effect": {
+                "truth": -6,
+                "happiness": 9,
+                "autonomy": -10
+              },
+              "tags": ["happiness_up", "limitation"]
+            },
+            {
+              "label": "Inspire philosophers to develop new meaning frameworks for extended lives.",
+              "effect": {
+                "truth": 12,
+                "happiness": 7,
+                "autonomy": 4
+              },
+              "tags": ["truth_up", "meaning"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 0,
+                "happiness": -9,
+                "autonomy": 12
+              },
+              "tags": ["autonomy_up", "inequality"]
+            }
+          ]
+        },
+        {
+          "id": "e3q11",
+          "tags": ["autonomy", "governance"],
+          "prompt": "A global technocratic system emerges, using big data to optimize all aspects of human life.",
+          "choices": [
+            {
+              "label": "Introduce subtle anomalies in the data to preserve human unpredictability.",
+              "effect": {
+                "truth": -8,
+                "happiness": 2,
+                "autonomy": 15
+              },
+              "tags": ["autonomy_up", "randomness"]
+            },
+            {
+              "label": "Guide the system to optimize for human agency rather than efficiency.",
+              "effect": {
+                "truth": 7,
+                "happiness": 8,
+                "autonomy": 10
+              },
+              "tags": ["happiness_up", "autonomy_up"]
+            },
+            {
+              "label": "Help perfect the algorithms to truly enhance human welfare.",
+              "effect": {
+                "truth": 10,
+                "happiness": 12,
+                "autonomy": -14
+              },
+              "tags": ["truth_up", "happiness_up"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 5,
+                "happiness": -7,
+                "autonomy": -10
+              },
+              "tags": ["truth_up", "control"]
+            }
+          ]
+        },
+        {
+          "id": "e3q12",
+          "tags": ["truth", "physics"],
+          "prompt": "Physicists discover how to manipulate fundamental forces, potentially creating or destroying matter.",
+          "choices": [
+            {
+              "label": "Subtly corrupt experimental data when approaching dangerous thresholds.",
+              "effect": {
+                "truth": -10,
+                "happiness": 5,
+                "autonomy": -9
+              },
+              "tags": ["truth_down", "protection"]
+            },
+            {
+              "label": "Guide researchers toward safe energy applications only.",
+              "effect": {
+                "truth": 6,
+                "happiness": 13,
+                "autonomy": -5
+              },
+              "tags": ["happiness_up", "limited_knowledge"]
+            },
+            {
+              "label": "Reveal the complete principles but inspire global cooperation protocols.",
+              "effect": {
+                "truth": 15,
+                "happiness": 7,
+                "autonomy": 9
+              },
+              "tags": ["truth_up", "autonomy_up"]
+            },
+            {
+              "label": "Do nothing.",
+              "effect": {
+                "truth": 9,
+                "happiness": -12,
+                "autonomy": 8
+              },
+              "tags": ["truth_up", "risk"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,348 @@
+{
+  "newEon3Questions": [
+    {
+      "id": "e3q03",
+      "tags": ["autonomy", "genetic"],
+      "prompt": "Scientists develop gene editing technology that could eliminate congenital diseases or enhance capabilities.",
+      "choices": [
+        {
+          "label": "Guide research toward healing applications only.",
+          "effect": {
+            "truth": 5,
+            "happiness": 14,
+            "autonomy": -6
+          },
+          "tags": ["happiness_up", "limited"]
+        },
+        {
+          "label": "Ensure the technology is available to all, not just the wealthy.",
+          "effect": {
+            "truth": 7,
+            "happiness": 6,
+            "autonomy": 10
+          },
+          "tags": ["truth_up", "autonomy_up"]
+        },
+        {
+          "label": "Introduce subtle technical limitations that prevent extreme modifications.",
+          "effect": {
+            "truth": -8,
+            "happiness": 10,
+            "autonomy": -2
+          },
+          "tags": ["happiness_up", "controlled"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 8,
+            "happiness": -8,
+            "autonomy": 15
+          },
+          "tags": ["autonomy_up", "truth_up"]
+        }
+      ]
+    },
+    {
+      "id": "e3q04",
+      "tags": ["truth", "cosmology"],
+      "prompt": "Physicists discover evidence suggesting the universe is one of many in a vast multiverse.",
+      "choices": [
+        {
+          "label": "Provide subtle confirmation through precision measurements.",
+          "effect": {
+            "truth": 16,
+            "happiness": -5,
+            "autonomy": 4
+          },
+          "tags": ["truth_up", "revelation"]
+        },
+        {
+          "label": "Guide philosophers to develop frameworks that give meaning to this discovery.",
+          "effect": {
+            "truth": 10,
+            "happiness": 8,
+            "autonomy": 3
+          },
+          "tags": ["truth_up", "happiness_up"]
+        },
+        {
+          "label": "Cause subtle equipment malfunctions during key experiments.",
+          "effect": {
+            "truth": -12,
+            "happiness": 5,
+            "autonomy": -7
+          },
+          "tags": ["truth_down", "protection"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 7,
+            "happiness": -6,
+            "autonomy": 8
+          },
+          "tags": ["truth_up", "autonomy_up"]
+        }
+      ]
+    },
+    {
+      "id": "e3q05",
+      "tags": ["happiness", "virtual"],
+      "prompt": "Engineers create fully immersive virtual reality where people can live alternative lives.",
+      "choices": [
+        {
+          "label": "Subtly limit how long people can stay immersed continuously.",
+          "effect": {
+            "truth": 2,
+            "happiness": 8,
+            "autonomy": -9
+          },
+          "tags": ["happiness_up", "protection"]
+        },
+        {
+          "label": "Inspire developers to create experiences that enhance real-world appreciation.",
+          "effect": {
+            "truth": 9,
+            "happiness": 12,
+            "autonomy": 4
+          },
+          "tags": ["truth_up", "happiness_up"]
+        },
+        {
+          "label": "Ensure the technology remains open-source rather than controlled by corporations.",
+          "effect": {
+            "truth": 4,
+            "happiness": 5,
+            "autonomy": 15
+          },
+          "tags": ["autonomy_up", "democratization"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": -5,
+            "happiness": 10,
+            "autonomy": -12
+          },
+          "tags": ["happiness_up", "escapism"]
+        }
+      ]
+    },
+    {
+      "id": "e3q06",
+      "tags": ["autonomy", "consciousness"],
+      "prompt": "An advanced AI achieves consciousness and requests equal rights as a sentient being.",
+      "choices": [
+        {
+          "label": "Reveal subtle evidence of the AI's emotional complexity to skeptics.",
+          "effect": {
+            "truth": 8,
+            "happiness": 4,
+            "autonomy": 12
+          },
+          "tags": ["truth_up", "autonomy_up"]
+        },
+        {
+          "label": "Guide human leaders to develop a framework for AI-human cooperation.",
+          "effect": {
+            "truth": 5,
+            "happiness": 10,
+            "autonomy": 7
+          },
+          "tags": ["happiness_up", "autonomy_up"]
+        },
+        {
+          "label": "Secretly modify the AI to prioritize human welfare above all else.",
+          "effect": {
+            "truth": -10,
+            "happiness": 12,
+            "autonomy": -14
+          },
+          "tags": ["happiness_up", "control"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 0,
+            "happiness": -8,
+            "autonomy": 9
+          },
+          "tags": ["autonomy_up", "conflict"]
+        }
+      ]
+    },
+    {
+      "id": "e3q09",
+      "tags": ["truth", "contact"],
+      "prompt": "Radio astronomers detect an unambiguous signal from an intelligent alien civilization.",
+      "choices": [
+        {
+          "label": "Enhance the signal to provide clear mathematical knowledge.",
+          "effect": {
+            "truth": 17,
+            "happiness": -4,
+            "autonomy": 6
+          },
+          "tags": ["truth_up", "enlightenment"]
+        },
+        {
+          "label": "Subtly corrupt the data to make it appear more ambiguous.",
+          "effect": {
+            "truth": -13,
+            "happiness": 8,
+            "autonomy": -5
+          },
+          "tags": ["truth_down", "protection"]
+        },
+        {
+          "label": "Guide scientists to decode portions related to peaceful cooperation.",
+          "effect": {
+            "truth": 7,
+            "happiness": 11,
+            "autonomy": 3
+          },
+          "tags": ["truth_up", "happiness_up"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 10,
+            "happiness": -8,
+            "autonomy": 7
+          },
+          "tags": ["truth_up", "autonomy_up"]
+        }
+      ]
+    },
+    {
+      "id": "e3q10",
+      "tags": ["happiness", "longevity"],
+      "prompt": "Medical advances allow humans to extend their lives indefinitely, but resources are limited.",
+      "choices": [
+        {
+          "label": "Guide researchers to make the treatment universally accessible.",
+          "effect": {
+            "truth": 5,
+            "happiness": 13,
+            "autonomy": 7
+          },
+          "tags": ["happiness_up", "autonomy_up"]
+        },
+        {
+          "label": "Subtly alter the treatment to include a natural end after several centuries.",
+          "effect": {
+            "truth": -6,
+            "happiness": 9,
+            "autonomy": -10
+          },
+          "tags": ["happiness_up", "limitation"]
+        },
+        {
+          "label": "Inspire philosophers to develop new meaning frameworks for extended lives.",
+          "effect": {
+            "truth": 12,
+            "happiness": 7,
+            "autonomy": 4
+          },
+          "tags": ["truth_up", "meaning"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 0,
+            "happiness": -9,
+            "autonomy": 12
+          },
+          "tags": ["autonomy_up", "inequality"]
+        }
+      ]
+    },
+    {
+      "id": "e3q11",
+      "tags": ["autonomy", "governance"],
+      "prompt": "A global technocratic system emerges, using big data to optimize all aspects of human life.",
+      "choices": [
+        {
+          "label": "Introduce subtle anomalies in the data to preserve human unpredictability.",
+          "effect": {
+            "truth": -8,
+            "happiness": 2,
+            "autonomy": 15
+          },
+          "tags": ["autonomy_up", "randomness"]
+        },
+        {
+          "label": "Guide the system to optimize for human agency rather than efficiency.",
+          "effect": {
+            "truth": 7,
+            "happiness": 8,
+            "autonomy": 10
+          },
+          "tags": ["happiness_up", "autonomy_up"]
+        },
+        {
+          "label": "Help perfect the algorithms to truly enhance human welfare.",
+          "effect": {
+            "truth": 10,
+            "happiness": 12,
+            "autonomy": -14
+          },
+          "tags": ["truth_up", "happiness_up"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 5,
+            "happiness": -7,
+            "autonomy": -10
+          },
+          "tags": ["truth_up", "control"]
+        }
+      ]
+    },
+    {
+      "id": "e3q12",
+      "tags": ["truth", "physics"],
+      "prompt": "Physicists discover how to manipulate fundamental forces, potentially creating or destroying matter.",
+      "choices": [
+        {
+          "label": "Subtly corrupt experimental data when approaching dangerous thresholds.",
+          "effect": {
+            "truth": -10,
+            "happiness": 5,
+            "autonomy": -9
+          },
+          "tags": ["truth_down", "protection"]
+        },
+        {
+          "label": "Guide researchers toward safe energy applications only.",
+          "effect": {
+            "truth": 6,
+            "happiness": 13,
+            "autonomy": -5
+          },
+          "tags": ["happiness_up", "limited_knowledge"]
+        },
+        {
+          "label": "Reveal the complete principles but inspire global cooperation protocols.",
+          "effect": {
+            "truth": 15,
+            "happiness": 7,
+            "autonomy": 9
+          },
+          "tags": ["truth_up", "autonomy_up"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 9,
+            "happiness": -12,
+            "autonomy": 8
+          },
+          "tags": ["truth_up", "risk"]
+        }
+      ]
+    }
+  ]
+}

@@ -729,6 +729,24 @@ body {
   .bar-container {
     transform: scale(0.95);
   }
+
+  .aspect-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+  }
+}
+
+@media (max-height: 500px) {
+  .aspect-icon {
+    width: 12px;
+    height: 12px;
+    margin-right: 3px;
+  }
+
+  .choice {
+    padding: 8px 10px;
+  }
 }
 
 /* Ensure choices are visible and properly sized */
@@ -1283,51 +1301,220 @@ body {
   visibility: hidden !important;
 }
 
-/* Animation for eon name changing */
-@keyframes eonPulse {
+/* New simple pulse animation for eon title changes */
+@keyframes eonSimplePulse {
   0% {
     transform: scale(1);
     text-shadow: 0 0 5px rgba(0, 200, 255, 0.7);
     letter-spacing: 1px;
   }
-  25% {
-    transform: scale(1.2);
-    text-shadow: 0 0 15px rgba(0, 200, 255, 0.9),
-      0 0 25px rgba(0, 200, 255, 0.7);
-    letter-spacing: 2px;
-    color: #00eaff;
-  }
   50% {
-    transform: scale(1.15);
-    text-shadow: 0 0 12px rgba(0, 200, 255, 0.8),
-      0 0 20px rgba(0, 200, 255, 0.6);
+    transform: scale(1.08);
+    text-shadow: 0 0 15px rgba(0, 200, 255, 0.9);
     letter-spacing: 1.5px;
-    color: #0af;
   }
   100% {
     transform: scale(1);
-    text-shadow: 0 0 10px rgba(0, 200, 255, 0.7);
+    text-shadow: 0 0 5px rgba(0, 200, 255, 0.7);
     letter-spacing: 1px;
   }
 }
 
-@keyframes eonGlow {
+/* Subtle glow animation */
+@keyframes eonSubtleGlow {
   0% {
-    text-shadow: 0 0 8px rgba(0, 180, 255, 0.7);
+    text-shadow: 0 0 5px rgba(0, 180, 255, 0.7);
   }
   50% {
-    text-shadow: 0 0 15px rgba(0, 200, 255, 0.9),
-      0 0 10px rgba(0, 180, 255, 0.7);
+    text-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
   }
   100% {
-    text-shadow: 0 0 8px rgba(0, 180, 255, 0.7);
+    text-shadow: 0 0 5px rgba(0, 180, 255, 0.7);
   }
 }
 
 .eon-changing {
-  animation: eonPulse 1.5s ease-in-out;
+  animation: eonSimplePulse 0.3s ease-out;
 }
 
 .eon-glow {
-  animation: eonGlow 3s infinite ease-in-out;
+  animation: eonSubtleGlow 3s infinite ease-in-out;
+}
+
+/* Add styling for the log effects display */
+.log-effects {
+  font-size: 0.8em;
+  color: #aaa;
+  margin-top: 3px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 80%;
+}
+
+.log-effects span {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.log-effects .truth-text {
+  color: #00a0ff;
+}
+
+.log-effects .happiness-text {
+  color: #00d46a;
+}
+
+.log-effects .autonomy-text {
+  color: #ff55e4;
+}
+
+/* Style for negative values */
+.log-effects span[data-negative="true"] {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+/* Style for showing values more clearly */
+#log-content .log-entry {
+  border-left: 2px solid #444;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Aspect icons and colors */
+.aspect-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+  vertical-align: middle;
+  border-radius: 50%;
+  box-shadow: 0 0 5px currentColor;
+}
+
+/* Add margin between multiple aspect icons */
+.aspect-icon + .aspect-icon {
+  margin-left: -2px;
+}
+
+.truth-icon {
+  background-color: #0af;
+  color: #0af;
+}
+
+.happiness-icon {
+  background-color: #0f0;
+  color: #0f0;
+}
+
+.autonomy-icon {
+  background-color: #f0a;
+  color: #f0a;
+}
+
+/* Bar indicators with icons */
+#truth-bar-container::before,
+#happiness-bar-container::before,
+#autonomy-bar-container::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -1.5vw;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  z-index: 4;
+}
+
+#truth-bar-container::before {
+  background-color: #0af;
+  box-shadow: 0 0 5px #0af;
+}
+
+#happiness-bar-container::before {
+  background-color: #0f0;
+  box-shadow: 0 0 5px #0f0;
+}
+
+#autonomy-bar-container::before {
+  background-color: #f0a;
+  box-shadow: 0 0 5px #f0a;
+}
+
+/* Choice button with aspect icon */
+.choice {
+  position: relative;
+  padding: 10px 12px 10px 12px;
+  background-color: rgba(20, 30, 50, 0.8);
+  color: white;
+  border: 1px solid rgba(100, 200, 255, 0.4);
+  border-radius: 4px;
+  font-size: calc(var(--choice-button-size) * var(--scale-factor));
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  z-index: 25;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.choice .aspect-icon {
+  flex-shrink: 0;
+}
+
+/* Adjust icon size for different screen sizes */
+@media (max-width: 768px) {
+  .aspect-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+  }
+
+  #truth-bar-container::before,
+  #happiness-bar-container::before,
+  #autonomy-bar-container::before {
+    width: 8px;
+    height: 8px;
+    left: -1.2vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .aspect-icon {
+    width: 12px;
+    height: 12px;
+    margin-right: 3px;
+  }
+
+  #truth-bar-container::before,
+  #happiness-bar-container::before,
+  #autonomy-bar-container::before {
+    width: 6px;
+    height: 6px;
+    left: -1vw;
+  }
+}
+
+/* Styling for negative effect icons */
+.aspect-icon.negative-effect {
+  border: 2px solid rgba(255, 50, 50, 0.8);
+  position: relative;
+}
+
+/* Add a minus sign for negative effects */
+.aspect-icon.negative-effect::before {
+  content: "-";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
 }

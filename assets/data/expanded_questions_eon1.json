@@ -1,0 +1,348 @@
+{
+  "newEon1Questions": [
+    {
+      "id": "e1q03",
+      "tags": ["autonomy", "leadership"],
+      "prompt": "A tribal elder dreams of a new way to govern, where decisions require agreement from all adults.",
+      "choices": [
+        {
+          "label": "Send visions of successful council meetings to the skeptics.",
+          "effect": {
+            "truth": 2,
+            "happiness": 3,
+            "autonomy": 12
+          },
+          "tags": ["autonomy_up", "subtle"]
+        },
+        {
+          "label": "Create a rainbow that appears when the first council gathers.",
+          "effect": {
+            "truth": -5,
+            "happiness": 8,
+            "autonomy": 6
+          },
+          "tags": ["happiness_up", "autonomy_up"]
+        },
+        {
+          "label": "Guide them toward choosing a single trusted leader instead.",
+          "effect": {
+            "truth": -3,
+            "happiness": 5,
+            "autonomy": -10
+          },
+          "tags": ["happiness_up", "autonomy_down"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 0,
+            "happiness": -2,
+            "autonomy": 8
+          },
+          "tags": ["autonomy_up"]
+        }
+      ]
+    },
+    {
+      "id": "e1q04",
+      "tags": ["truth", "discovery"],
+      "prompt": "Hunters discover cave paintings that seem impossibly old, depicting beings unlike any they've seen.",
+      "choices": [
+        {
+          "label": "Add subtle details at night that hint at your true nature.",
+          "effect": {
+            "truth": 14,
+            "happiness": -3,
+            "autonomy": -4
+          },
+          "tags": ["truth_up", "revelation"]
+        },
+        {
+          "label": "Cause a small cave-in that hides the most unsettling images.",
+          "effect": {
+            "truth": -8,
+            "happiness": 7,
+            "autonomy": -5
+          },
+          "tags": ["truth_down", "happiness_up"]
+        },
+        {
+          "label": "Guide an artist to create new interpretations that are less accurate but more inspiring.",
+          "effect": {
+            "truth": -6,
+            "happiness": 10,
+            "autonomy": 3
+          },
+          "tags": ["happiness_up", "truth_down"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 5,
+            "happiness": -3,
+            "autonomy": 6
+          },
+          "tags": ["truth_up", "autonomy_up"]
+        }
+      ]
+    },
+    {
+      "id": "e1q05",
+      "tags": ["happiness", "ritual"],
+      "prompt": "A shaman creates a new ritual involving hallucinogenic plants that promises visions of the future.",
+      "choices": [
+        {
+          "label": "Send genuinely prophetic visions through the ritual.",
+          "effect": {
+            "truth": 9,
+            "happiness": 6,
+            "autonomy": -10
+          },
+          "tags": ["truth_up", "autonomy_down"]
+        },
+        {
+          "label": "Modify the plant's effects to create feelings of connection rather than prophecy.",
+          "effect": {
+            "truth": -4,
+            "happiness": 13,
+            "autonomy": 0
+          },
+          "tags": ["happiness_up", "communion"]
+        },
+        {
+          "label": "Guide the shaman to dilute the mixture, making its effects more mild.",
+          "effect": {
+            "truth": 2,
+            "happiness": -3,
+            "autonomy": 7
+          },
+          "tags": ["autonomy_up", "moderation"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": -6,
+            "happiness": 4,
+            "autonomy": 4
+          },
+          "tags": ["autonomy_up", "happiness_up"]
+        }
+      ]
+    },
+    {
+      "id": "e1q06",
+      "tags": ["autonomy", "territory"],
+      "prompt": "Two tribes dispute ownership of a valley with abundant resources. War seems inevitable.",
+      "choices": [
+        {
+          "label": "Create a natural phenomenon that divides the valley clearly between them.",
+          "effect": {
+            "truth": 0,
+            "happiness": 5,
+            "autonomy": -7
+          },
+          "tags": ["happiness_up", "imposed_solution"]
+        },
+        {
+          "label": "Inspire leaders from both sides with ideas for sharing the valley.",
+          "effect": {
+            "truth": 3,
+            "happiness": 7,
+            "autonomy": 8
+          },
+          "tags": ["happiness_up", "autonomy_up"]
+        },
+        {
+          "label": "Guide them to discover a third, unclaimed area with even greater resources.",
+          "effect": {
+            "truth": -3,
+            "happiness": 10,
+            "autonomy": 4
+          },
+          "tags": ["happiness_up", "distraction"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 0,
+            "happiness": -10,
+            "autonomy": 5
+          },
+          "tags": ["conflict", "autonomy_up"]
+        }
+      ]
+    },
+    {
+      "id": "e1q09",
+      "tags": ["truth", "weather"],
+      "prompt": "A group of elders begin tracking the seasons more precisely and notice patterns in the stars.",
+      "choices": [
+        {
+          "label": "Send dreams that help them develop an accurate calendar.",
+          "effect": {
+            "truth": 10,
+            "happiness": 6,
+            "autonomy": -5
+          },
+          "tags": ["truth_up", "guidance"]
+        },
+        {
+          "label": "Place a subtle marker stone that aligns with solstices and equinoxes.",
+          "effect": {
+            "truth": 7,
+            "happiness": 3,
+            "autonomy": 2
+          },
+          "tags": ["truth_up", "subtle"]
+        },
+        {
+          "label": "Create unusual weather that challenges their predictions.",
+          "effect": {
+            "truth": -6,
+            "happiness": -4,
+            "autonomy": 8
+          },
+          "tags": ["truth_down", "autonomy_up"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 4,
+            "happiness": 0,
+            "autonomy": 6
+          },
+          "tags": ["truth_up", "autonomy_up"]
+        }
+      ]
+    },
+    {
+      "id": "e1q10",
+      "tags": ["happiness", "family"],
+      "prompt": "A woman with unusual empathic abilities begins healing emotional wounds in her community.",
+      "choices": [
+        {
+          "label": "Enhance her abilities further, allowing deeper healing.",
+          "effect": {
+            "truth": -3,
+            "happiness": 15,
+            "autonomy": -8
+          },
+          "tags": ["happiness_up", "autonomy_down"]
+        },
+        {
+          "label": "Guide her to teach her methods to others.",
+          "effect": {
+            "truth": 5,
+            "happiness": 8,
+            "autonomy": 5
+          },
+          "tags": ["happiness_up", "autonomy_up"]
+        },
+        {
+          "label": "Reveal to her the cosmic nature of consciousness.",
+          "effect": {
+            "truth": 12,
+            "happiness": -4,
+            "autonomy": 6
+          },
+          "tags": ["truth_up", "autonomy_up"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 0,
+            "happiness": 6,
+            "autonomy": 0
+          },
+          "tags": ["happiness_up", "natural"]
+        }
+      ]
+    },
+    {
+      "id": "e1q11",
+      "tags": ["autonomy", "hunting"],
+      "prompt": "Hunters develop new bow technology that makes killing animals from a distance much easier.",
+      "choices": [
+        {
+          "label": "Subtly influence animal migration patterns to prevent overhunting.",
+          "effect": {
+            "truth": -4,
+            "happiness": 3,
+            "autonomy": -6
+          },
+          "tags": ["management", "autonomy_down"]
+        },
+        {
+          "label": "Inspire the creation of cultural taboos about respecting prey.",
+          "effect": {
+            "truth": 2,
+            "happiness": 0,
+            "autonomy": 8
+          },
+          "tags": ["autonomy_up", "sustainable"]
+        },
+        {
+          "label": "Guide them to discover plant cultivation alongside hunting.",
+          "effect": {
+            "truth": 6,
+            "happiness": 8,
+            "autonomy": 4
+          },
+          "tags": ["truth_up", "happiness_up"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 0,
+            "happiness": 5,
+            "autonomy": 10
+          },
+          "tags": ["autonomy_up", "happiness_up"]
+        }
+      ]
+    },
+    {
+      "id": "e1q12",
+      "tags": ["truth", "elements"],
+      "prompt": "A curious individual discovers how to create and control fire, causing both wonder and fear.",
+      "choices": [
+        {
+          "label": "Guide them to discover medicinal uses for fire and cooked plants.",
+          "effect": {
+            "truth": 10,
+            "happiness": 9,
+            "autonomy": 2
+          },
+          "tags": ["truth_up", "happiness_up"]
+        },
+        {
+          "label": "Create gentle rain whenever fire threatens to spread dangerously.",
+          "effect": {
+            "truth": -9,
+            "happiness": 7,
+            "autonomy": -7
+          },
+          "tags": ["safety", "autonomy_down"]
+        },
+        {
+          "label": "Inspire fire-based rituals that build community bonds.",
+          "effect": {
+            "truth": -5,
+            "happiness": 12,
+            "autonomy": 4
+          },
+          "tags": ["happiness_up", "community"]
+        },
+        {
+          "label": "Do nothing.",
+          "effect": {
+            "truth": 3,
+            "happiness": -6,
+            "autonomy": 9
+          },
+          "tags": ["autonomy_up", "natural_consequences"]
+        }
+      ]
+    }
+  ]
+}

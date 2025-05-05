@@ -2,11 +2,11 @@
 const gameState = {
   currentEon: 1,
   currentQuestion: 1,
-  maxQuestions: 3,
+  maxQuestions: 5, // Increased from 3 to 5 questions per eon
   aspects: {
-    truth: 50, // Starting at 50 (neutral)
-    happiness: 50,
-    autonomy: 50,
+    truth: 35, // Starting even lower (previously 40)
+    happiness: 35, // Starting even lower (previously 40)
+    autonomy: 35, // Starting even lower (previously 40)
   },
   decisions: [],
   currentQuestionObj: null, // Added to store the current question object
@@ -254,7 +254,7 @@ async function loadGameData() {
     // Load from assets/data/ directory
     const [questionsResponse, snippetsResponse, endingsResponse] =
       await Promise.all([
-        fetch("assets/data/questions.json"),
+        fetch("assets/data/expanded_questions_balanced.json"),
         fetch("assets/data/snippets.json"),
         fetch("assets/data/endings.json"),
       ]);
@@ -264,9 +264,19 @@ async function loadGameData() {
     cachedData.endings = await endingsResponse.json();
 
     console.log("Game data loaded successfully from assets/data/");
+    console.log(
+      `Loaded ${cachedData.questions.eons[0].questions.length} questions for Eon 1`
+    );
+    console.log(
+      `Loaded ${cachedData.questions.eons[1].questions.length} questions for Eon 2`
+    );
+    console.log(
+      `Loaded ${cachedData.questions.eons[2].questions.length} questions for Eon 3`
+    );
+    return true;
   } catch (error) {
     console.error("Error loading game data:", error);
-    alert("Failed to load game data. Please refresh the page and try again.");
+    return false;
   }
 }
 
@@ -293,6 +303,25 @@ function addEventListeners() {
       handleChoice(parseInt(button.dataset.choice))
     );
   });
+
+  // Log title click for toggle - make this more robust to ensure it's attached
+  // First try to find it immediately
+  let logTitle = document.querySelector(".log-title");
+  if (logTitle) {
+    logTitle.addEventListener("click", toggleDecisionLog);
+    console.log("Decision log toggle listener attached");
+  } else {
+    // If not found, try again after a short delay to ensure DOM is fully loaded
+    setTimeout(() => {
+      logTitle = document.querySelector(".log-title");
+      if (logTitle) {
+        logTitle.addEventListener("click", toggleDecisionLog);
+        console.log("Decision log toggle listener attached (delayed)");
+      } else {
+        console.warn("Could not find log title element for toggle");
+      }
+    }, 500);
+  }
 }
 
 // Toggle sound on/off
@@ -688,8 +717,69 @@ function updateMonitors() {
           if (monitorCoordinates) {
             setMonitorPositions(monitorCoordinates);
           }
+
+          // Now prepare the question card
+          if (questionCard) {
+            // Configure all properties while hidden
+            const choices = document.getElementById("choices");
+            const dilemmaTitle = document.getElementById("dilemma-title");
+            const dilemmaText = document.getElementById("dilemma-text");
+
+            // Set up the question card completely
+            questionCard.classList.remove("hidden");
+            questionCard.style.removeProperty("visibility");
+            questionCard.style.position = "absolute";
+            questionCard.style.zIndex = "15";
+            questionCard.style.bottom = "4%";
+            questionCard.style.pointerEvents = "auto";
+
+            // Setup child elements
+            if (choices) {
+              choices.style.display = "grid";
+              choices.style.visibility = "visible";
+            }
+
+            if (dilemmaTitle) {
+              dilemmaTitle.style.visibility = "visible";
+              dilemmaTitle.style.display = "block";
+            }
+
+            if (dilemmaText) {
+              dilemmaText.style.visibility = "visible";
+              dilemmaText.style.display = "block";
+            }
+
+            // Make sure choice buttons are visible
+            document.querySelectorAll(".choice").forEach((button) => {
+              button.style.removeProperty("display");
+              button.style.removeProperty("visibility");
+              button.style.pointerEvents = "auto";
+            });
+
+            // Adjust text sizes while hidden
+            adjustQuestionCardTextSizes();
+
+            // IMPORTANT: Now make the card visible but still transparent
+            questionCard.style.display = "block";
+            // Add will-change for smoother opacity transition
+            questionCard.style.willChange = "opacity";
+
+            // Force a reflow to ensure the display change is processed
+            questionCard.offsetHeight;
+
+            // Add a small delay before starting opacity transition
+            setTimeout(() => {
+              console.log("Starting question card fade-in");
+              questionCard.style.opacity = "1";
+
+              // Remove will-change after transition completes
+              setTimeout(() => {
+                questionCard.style.removeProperty("will-change");
+              }, 1000);
+            }, 50);
+          }
         }, 200);
-      }, 500);
+      }, 450);
     });
   } else {
     console.log("Monitor images unchanged - no dissolve effect needed");
@@ -760,6 +850,39 @@ function getRandomQuestion() {
   return randomQuestion;
 }
 
+// Determine the most impactful aspect across all choices of a question
+// Returns the aspect with the largest absolute effect value
+function findMostImpactfulAspect(question) {
+  let maxImpact = 0;
+  let mostImpactfulAspect = null;
+  let mostImpactfulChoiceIndex = -1;
+  let isNegativeEffect = false;
+
+  // Compare the absolute values of all effects across all choices
+  question.choices.forEach((choice, choiceIndex) => {
+    const effects = choice.effect;
+
+    // Check each aspect
+    ["truth", "happiness", "autonomy"].forEach((aspect) => {
+      const effectValue = effects[aspect];
+      const absoluteEffect = Math.abs(effectValue);
+      if (absoluteEffect > maxImpact) {
+        maxImpact = absoluteEffect;
+        mostImpactfulAspect = aspect;
+        mostImpactfulChoiceIndex = choiceIndex;
+        isNegativeEffect = effectValue < 0;
+      }
+    });
+  });
+
+  return {
+    aspect: mostImpactfulAspect,
+    choiceIndex: mostImpactfulChoiceIndex,
+    impact: maxImpact,
+    isNegative: isNegativeEffect,
+  };
+}
+
 // Load a random question
 function loadQuestion() {
   const question = getRandomQuestion();
@@ -773,18 +896,49 @@ function loadQuestion() {
   elements.dilemmaTitle.textContent = `Dilemma ${gameState.currentQuestion} of ${gameState.maxQuestions}`;
   elements.dilemmaText.textContent = question.prompt;
 
+  // Find the most impactful aspect across all choices
+  const {
+    aspect: mostImpactfulAspect,
+    choiceIndex: mostImpactfulChoiceIndex,
+    impact,
+    isNegative,
+  } = findMostImpactfulAspect(question);
+
+  console.log(
+    `Most impactful aspect: ${mostImpactfulAspect} (impact: ${impact}, negative: ${isNegative}) on choice ${
+      mostImpactfulChoiceIndex + 1
+    }`
+  );
+
   // Set choice labels and classify by length for styling
   question.choices.forEach((choice, index) => {
     const button = elements.choiceButtons[index];
     const label = choice.label;
 
-    // Set the text content
-    button.textContent = label;
+    // Create HTML for button with icon
+    let buttonContent = "";
+
+    // Only show icon on the choice with the most significant impact
+    if (
+      index === mostImpactfulChoiceIndex &&
+      mostImpactfulAspect &&
+      impact >= 5
+    ) {
+      // Add negative class for styling if the effect is negative
+      const negativeClass = isNegative ? "negative-effect" : "";
+      buttonContent += `<span class="aspect-icon ${mostImpactfulAspect}-icon ${negativeClass}"></span>`;
+    }
+
+    // Add the label text
+    buttonContent += label;
+
+    // Set the button innerHTML
+    button.innerHTML = buttonContent;
 
     // Remove any previous length classifications
     button.removeAttribute("data-length");
 
-    // Classify based on text length to apply appropriate styling
+    // Classify based on text length for styling
     if (label.length > 60) {
       button.setAttribute("data-length", "very-long");
     } else if (label.length > 40) {
@@ -794,6 +948,10 @@ function loadQuestion() {
     console.log(
       `Button ${index} text: "${label.substring(0, 20)}..." length: ${
         label.length
+      }, has impact icon: ${
+        index === mostImpactfulChoiceIndex
+          ? `yes (${isNegative ? "negative" : "positive"})`
+          : "no"
       }`
     );
   });
@@ -804,6 +962,43 @@ function loadQuestion() {
 
   // Ensure text fits without scrolling by adjusting font size if needed
   adjustQuestionCardTextSizes();
+}
+
+// Utility function to determine which aspect(s) get the highest positive boost
+// Returns an array of aspects to handle ties
+function getDominantPositiveAspect(effects) {
+  const { truth, happiness, autonomy } = effects;
+
+  // Define the minimum threshold for a major impact (only show icons for values >= this)
+  const MAJOR_IMPACT_THRESHOLD = 5;
+
+  // Only consider positive effects above the threshold
+  const significantEffects = {
+    truth: truth >= MAJOR_IMPACT_THRESHOLD ? truth : 0,
+    happiness: happiness >= MAJOR_IMPACT_THRESHOLD ? happiness : 0,
+    autonomy: autonomy >= MAJOR_IMPACT_THRESHOLD ? autonomy : 0,
+  };
+
+  // Find the highest positive value
+  const maxValue = Math.max(
+    significantEffects.truth,
+    significantEffects.happiness,
+    significantEffects.autonomy
+  );
+
+  // Return null if no significant positive effects
+  if (maxValue <= 0) return null;
+
+  // Find all aspects that have this max value (handles ties)
+  const dominantAspects = [];
+
+  if (significantEffects.truth === maxValue) dominantAspects.push("truth");
+  if (significantEffects.happiness === maxValue)
+    dominantAspects.push("happiness");
+  if (significantEffects.autonomy === maxValue)
+    dominantAspects.push("autonomy");
+
+  return dominantAspects;
 }
 
 // Function to dynamically adjust text sizes and layout based on content
@@ -931,8 +1126,8 @@ function handleChoice(choiceIndex) {
   const questionCard = document.getElementById("question-card");
 
   // Calculate amplification factor based on current eon
-  // Using higher multipliers to create much more dramatic effects
-  const amplificationFactor = 1.5 + gameState.currentEon * 0.5;
+  // MODIFIED: Reduced amplification factor to create less dramatic upward effects
+  const amplificationFactor = 0.8 + gameState.currentEon * 0.2; // Increases with each eon (1.0, 1.2, 1.4)
 
   // Amplify the effects
   const amplifiedTruth = Math.round(choice.effect.truth * amplificationFactor);
@@ -943,6 +1138,18 @@ function handleChoice(choiceIndex) {
     choice.effect.autonomy * amplificationFactor
   );
 
+  // ADDED: Natural decay effect - values tend to decay toward zero more aggressively toward the end
+  const decayFactor = 0.7 + gameState.currentEon * 0.7; // Increases with each eon (1.4, 2.1, 2.8)
+  const naturalDecay = {
+    truth: Math.round(decayFactor * (gameState.aspects.truth > 50 ? -3 : -2)),
+    happiness: Math.round(
+      decayFactor * (gameState.aspects.happiness > 50 ? -3 : -2)
+    ),
+    autonomy: Math.round(
+      decayFactor * (gameState.aspects.autonomy > 50 ? -3 : -2)
+    ),
+  };
+
   console.log(
     `Choice effects amplified by ${amplificationFactor}x for Eon ${gameState.currentEon}`
   );
@@ -952,30 +1159,39 @@ function handleChoice(choiceIndex) {
   console.log(
     `Amplified: T:${amplifiedTruth}, H:${amplifiedHappiness}, A:${amplifiedAutonomy}`
   );
+  console.log(
+    `Natural decay: T:${naturalDecay.truth}, H:${naturalDecay.happiness}, A:${naturalDecay.autonomy}`
+  );
 
-  // Update aspects with amplified effects
+  // Update aspects with amplified effects AND natural decay
   gameState.aspects.truth = Math.max(
     0,
-    Math.min(100, gameState.aspects.truth + amplifiedTruth)
+    Math.min(100, gameState.aspects.truth + amplifiedTruth + naturalDecay.truth)
   );
   gameState.aspects.happiness = Math.max(
     0,
-    Math.min(100, gameState.aspects.happiness + amplifiedHappiness)
+    Math.min(
+      100,
+      gameState.aspects.happiness + amplifiedHappiness + naturalDecay.happiness
+    )
   );
   gameState.aspects.autonomy = Math.max(
     0,
-    Math.min(100, gameState.aspects.autonomy + amplifiedAutonomy)
+    Math.min(
+      100,
+      gameState.aspects.autonomy + amplifiedAutonomy + naturalDecay.autonomy
+    )
   );
 
-  // Record decision with amplified effects
+  // Record decision with amplified effects and decay
   gameState.decisions.push({
     eon: gameState.currentEon,
     questionId: question.id,
     choice: choiceIndex,
     effects: {
-      truth: amplifiedTruth,
-      happiness: amplifiedHappiness,
-      autonomy: amplifiedAutonomy,
+      truth: amplifiedTruth + naturalDecay.truth,
+      happiness: amplifiedHappiness + naturalDecay.happiness,
+      autonomy: amplifiedAutonomy + naturalDecay.autonomy,
     },
   });
 
@@ -1022,14 +1238,72 @@ function handleChoice(choiceIndex) {
   }
 }
 
+// Toggle decision log between collapsed and expanded states
+function toggleDecisionLog() {
+  const consoleLog = document.getElementById("console-log");
+  if (consoleLog) {
+    consoleLog.classList.toggle("collapsed");
+  }
+}
+
 // Add to decision log
 function addToLog(dilemma, choice) {
+  // Check if we need to add an eon header first
+  const eonHeaders = document.querySelectorAll(
+    `.log-eon-${gameState.currentEon}`
+  );
+
+  // If this is the first entry for this eon, add an eon header
+  if (eonHeaders.length === 0) {
+    const eonNames = ["Awakening World", "Industrial Dusk", "Final Horizon"];
+    const eonHeader = document.createElement("div");
+    eonHeader.classList.add(
+      "log-eon-header",
+      `log-eon-${gameState.currentEon}`
+    );
+    eonHeader.innerHTML = `
+      <div class="log-eon-title">Eon ${gameState.currentEon}: ${
+      eonNames[gameState.currentEon - 1]
+    }</div>
+    `;
+    elements.logContent.appendChild(eonHeader);
+  }
+
+  // Get the most recent decision to show its effects
+  const recentDecision = gameState.decisions[gameState.decisions.length - 1];
+
+  // Create effect text that shows both choice effects and natural decay
+  let effectsText = "";
+  if (recentDecision) {
+    const { truth, happiness, autonomy } = recentDecision.effects;
+    effectsText = `<div class="log-effects">`;
+
+    // Format Truth effect
+    effectsText += `<span class="truth-text">Truth: ${
+      truth > 0 ? "+" : ""
+    }${truth}</span>`;
+
+    // Format Happiness effect
+    effectsText += `<span class="happiness-text">Happiness: ${
+      happiness > 0 ? "+" : ""
+    }${happiness}</span>`;
+
+    // Format Autonomy effect
+    effectsText += `<span class="autonomy-text">Autonomy: ${
+      autonomy > 0 ? "+" : ""
+    }${autonomy}</span>`;
+
+    effectsText += `</div>`;
+  }
+
+  // Add the log entry
   const logEntry = document.createElement("div");
   logEntry.classList.add("log-entry");
   logEntry.innerHTML = `
-        <div class="log-dilemma">${dilemma}</div>
-        <div class="log-choice">→ ${choice}</div>
-    `;
+      <div class="log-dilemma">${dilemma}</div>
+      <div class="log-choice">→ ${choice}</div>
+      ${effectsText}
+  `;
   elements.logContent.appendChild(logEntry);
   elements.logContent.scrollTop = elements.logContent.scrollHeight;
 }
@@ -1218,9 +1492,9 @@ function continueFromOverlay() {
       gameState.currentEon = 1;
       gameState.currentQuestion = 1;
       gameState.aspects = {
-        truth: 50,
-        happiness: 50,
-        autonomy: 50,
+        truth: 35, // Starting even lower (previously 40)
+        happiness: 35, // Starting even lower (previously 40)
+        autonomy: 35, // Starting even lower (previously 40)
       };
       gameState.decisions = [];
       gameState.currentQuestionObj = null;
@@ -1268,19 +1542,29 @@ function continueFromOverlay() {
       gameState.currentEon++;
       gameState.currentQuestion = 1;
 
-      // Update eon display
+      // Eon names array
       const eonNames = ["Awakening World", "Industrial Dusk", "Final Horizon"];
+
+      // First remove any existing animation classes
+      elements.currentEon.classList.remove("eon-changing", "eon-glow");
+
+      // Force a reflow to ensure animation plays again
+      elements.currentEon.offsetHeight;
+
+      // Update text content
       elements.currentEon.textContent = `Eon ${gameState.currentEon}: ${
         eonNames[gameState.currentEon - 1]
       }`;
 
-      // Style the current eon with Prime Directive font and larger size
-      elements.currentEon.style.fontFamily = "'Orbitron', sans-serif";
-      elements.currentEon.style.fontSize = "1.5rem";
-      elements.currentEon.style.fontWeight = "bold";
-      elements.currentEon.style.textShadow = "0 0 5px rgba(0, 200, 255, 0.7)";
-      elements.currentEon.style.letterSpacing = "1px";
-      elements.currentEon.style.marginBottom = "12px";
+      // Apply the transform animation after a short delay for better visibility
+      setTimeout(() => {
+        elements.currentEon.classList.add("eon-changing");
+
+        // Add persistent glow after the animation completes
+        setTimeout(() => {
+          elements.currentEon.classList.add("eon-glow");
+        }, 300); // Match the duration of the simple pulse animation
+      }, 300);
 
       // Hide the question counter
       if (elements.questionsCounter) {
@@ -1621,20 +1905,22 @@ function showEnding() {
 // Determine ending based on final aspects with more granularity
 function determineEnding() {
   // Enhanced tier determination - creates 5 tiers instead of 3 for more diverse endings
+  // MODIFIED: Made the thresholds higher for positive tiers
   const getDetailedTierForAspect = (aspect) => {
     const value = gameState.aspects[aspect];
-    if (value < 20) return "very_low";
-    if (value < 40) return "low";
-    if (value < 60) return "mid";
-    if (value < 80) return "high";
+    if (value < 25) return "very_low"; // Raised from 20 - easier to get very low
+    if (value < 45) return "low"; // Raised from 40 - easier to get low
+    if (value < 70) return "mid"; // Raised from 65 - harder to reach high
+    if (value < 90) return "high"; // Raised from 85 - harder to reach very_high
     return "very_high";
   };
 
   // Traditional 3-tier system for backward compatibility
+  // MODIFIED: Made the thresholds higher for positive tiers
   const getStandardTierForAspect = (aspect) => {
     const value = gameState.aspects[aspect];
-    if (value < 33) return "low";
-    if (value < 66) return "mid";
+    if (value < 45) return "low"; // Raised from 40 - easier to get low endings
+    if (value < 75) return "mid"; // Raised from 70 - harder to get high endings
     return "high";
   };
 
@@ -1685,14 +1971,14 @@ function determineEnding() {
   );
 
   // Determine if any aspect is extremely high or low (for special endings)
-  // Use actual values rather than tiers for more precise evaluation
+  // MODIFIED: Made extreme thresholds even more biased toward negative outcomes
   const hasExtremeTier =
-    truthValue >= 85 ||
-    truthValue <= 15 ||
-    happinessValue >= 85 ||
-    happinessValue <= 15 ||
-    autonomyValue >= 85 ||
-    autonomyValue <= 15;
+    truthValue >= 92 ||
+    truthValue <= 25 ||
+    happinessValue >= 92 ||
+    happinessValue <= 25 ||
+    autonomyValue >= 92 ||
+    autonomyValue <= 25;
 
   // More precisely identify which aspect is extreme and in which direction
   let extremeAspect = null;
@@ -1717,15 +2003,21 @@ function determineEnding() {
     isExtremeHigh = autonomyValue > 50;
   }
 
+  // MODIFIED: Changed balance threshold to require higher values overall
   // Determine if aspects are balanced or polarized
   const aspectRange =
     Math.max(truthValue, happinessValue, autonomyValue) -
     Math.min(truthValue, happinessValue, autonomyValue);
+
+  // Calculate average aspect value to determine if balanced and positive, or balanced and negative
+  const aspectAverage = (truthValue + happinessValue + autonomyValue) / 3;
   const isBalanced = aspectRange < 30;
+  const isPositivelyBalanced = isBalanced && aspectAverage >= 65; // Need much higher average for positive
+  const isNegativelyBalanced = isBalanced && aspectAverage < 65; // Lower average gets negative balance
   const isPolarized = aspectRange > 60;
 
   console.log(
-    `Aspect range: ${aspectRange}, Balanced: ${isBalanced}, Polarized: ${isPolarized}`
+    `Aspect range: ${aspectRange}, Average: ${aspectAverage}, Balanced: ${isBalanced}, Polarized: ${isPolarized}`
   );
   console.log(
     `Extreme aspect: ${extremeAspect}, High: ${isExtremeHigh}, Extreme value: ${hasExtremeTier}`
@@ -1772,21 +2064,34 @@ function determineEnding() {
         ((isExtremeHigh && ending.isExtremeHigh) ||
           (!isExtremeHigh && ending.isExtremeLow))
       ) {
-        potentialEndings.push({ ending, weight: 70 });
-        totalWeight += 70;
+        // MODIFIED: Give extra weight to low/negative extreme endings
+        const extremeWeight = isExtremeHigh ? 70 : 100; // Even more weight to negative extremes
+        potentialEndings.push({ ending, weight: extremeWeight });
+        totalWeight += extremeWeight;
       }
     });
   }
 
   // 4. Check for balanced/polarized matches
-  if (isBalanced) {
+  if (isPositivelyBalanced) {
     cachedData.endings.forEach((ending) => {
-      if (ending.isBalanced) {
+      if (ending.isBalanced && !ending.isNegativeBalance) {
         potentialEndings.push({ ending, weight: 60 });
         totalWeight += 60;
       }
     });
   }
+
+  // ADDED: Special handling for negatively balanced endings
+  if (isNegativelyBalanced) {
+    cachedData.endings.forEach((ending) => {
+      if (ending.isBalanced && ending.isNegativeBalance) {
+        potentialEndings.push({ ending, weight: 90 }); // Much higher weight for negative balance
+        totalWeight += 90;
+      }
+    });
+  }
+
   if (isPolarized) {
     cachedData.endings.forEach((ending) => {
       if (ending.isPolarized) {
@@ -1813,8 +2118,12 @@ function determineEnding() {
   if (potentialEndings.length < 2) {
     cachedData.endings.forEach((ending) => {
       if (ending.dominantAspect === dominantAspect) {
-        potentialEndings.push({ ending, weight: 30 });
-        totalWeight += 30;
+        // MODIFIED: Prioritize negative dominance when values aren't high
+        const avgAspectValue =
+          (truthValue + happinessValue + autonomyValue) / 3;
+        const dominantAspectWeight = avgAspectValue < 65 ? 50 : 30;
+        potentialEndings.push({ ending, weight: dominantAspectWeight });
+        totalWeight += dominantAspectWeight;
       }
     });
   }
@@ -1900,9 +2209,9 @@ function resetGame(event) {
   gameState.currentEon = 1;
   gameState.currentQuestion = 1;
   gameState.aspects = {
-    truth: 50,
-    happiness: 50,
-    autonomy: 50,
+    truth: 35, // Starting even lower (previously 40)
+    happiness: 35, // Starting even lower (previously 40)
+    autonomy: 35, // Starting even lower (previously 40)
   };
   gameState.decisions = [];
 
@@ -2039,6 +2348,12 @@ function showBridgeScreen() {
   // Show start-over button when on bridge screen
   elements.startOverBtn.style.display = "block";
 
+  // First remove any existing animation classes
+  elements.currentEon.classList.remove("eon-changing", "eon-glow");
+
+  // Force a reflow to ensure animation plays
+  elements.currentEon.offsetHeight;
+
   // Style the current eon with Prime Directive font and larger size
   const eonNames = ["Awakening World", "Industrial Dusk", "Final Horizon"];
   elements.currentEon.textContent = `Eon ${gameState.currentEon}: ${
@@ -2051,6 +2366,14 @@ function showBridgeScreen() {
   elements.currentEon.style.letterSpacing = "1px";
   elements.currentEon.style.marginBottom = "12px";
 
+  // Apply the simple pulse animation right away
+  elements.currentEon.classList.add("eon-changing");
+
+  // Add persistent subtle glow after the short animation completes
+  setTimeout(() => {
+    elements.currentEon.classList.add("eon-glow");
+  }, 300); // Match the duration of the simple pulse animation (0.3s)
+
   // Hide the question counter
   if (elements.questionsCounter) {
     elements.questionsCounter.style.display = "none";
@@ -2058,9 +2381,6 @@ function showBridgeScreen() {
 
   // Update monitors
   updateMonitors();
-
-  // Play transition sound
-  //playSFX("screenTransition");
 }
 
 // Position monitors and bars based on provided screen coordinates
