@@ -251,45 +251,7 @@ function playSFX(sfxName) {
 // Load game data
 async function loadGameData() {
   try {
-    // First try to load from data/json/ directory
-    try {
-      const [questionsResponse, snippetsResponse, endingsResponse] =
-        await Promise.all([
-          fetch("data/json/questions.json"),
-          fetch("data/json/snippets.json"),
-          fetch("data/json/endings.json"),
-        ]);
-
-      cachedData.questions = await questionsResponse.json();
-      cachedData.snippets = await snippetsResponse.json();
-      cachedData.endings = await endingsResponse.json();
-
-      console.log("Game data loaded successfully from data/json/");
-      return;
-    } catch (error) {
-      console.log("Couldn't load from data/json/, trying alternative paths...");
-    }
-
-    // Try to load from data/ directory
-    try {
-      const [questionsResponse, snippetsResponse, endingsResponse] =
-        await Promise.all([
-          fetch("data/questions.json"),
-          fetch("data/snippets.json"),
-          fetch("data/endings.json"),
-        ]);
-
-      cachedData.questions = await questionsResponse.json();
-      cachedData.snippets = await snippetsResponse.json();
-      cachedData.endings = await endingsResponse.json();
-
-      console.log("Game data loaded successfully from data/");
-      return;
-    } catch (error) {
-      console.log("Couldn't load from data/, trying assets/data/...");
-    }
-
-    // Final attempt: load from assets/data/ directory
+    // Load from assets/data/ directory
     const [questionsResponse, snippetsResponse, endingsResponse] =
       await Promise.all([
         fetch("assets/data/questions.json"),
@@ -303,39 +265,34 @@ async function loadGameData() {
 
     console.log("Game data loaded successfully from assets/data/");
   } catch (error) {
-    console.error(
-      "Error loading game data from all possible locations:",
-      error
-    );
+    console.error("Error loading game data:", error);
     alert("Failed to load game data. Please refresh the page and try again.");
   }
 }
 
 // Add event listeners
 function addEventListeners() {
-  // Make toggleDecisionLog available globally
-  window.toggleDecisionLog = toggleDecisionLog;
-
-  // Buttons
+  // Begin button
   elements.beginBtn.addEventListener("click", startGame);
+
+  // Continue button
   elements.continueBtn.addEventListener("click", continueFromOverlay);
+
+  // Start Over button
   elements.startOverBtn.addEventListener("click", resetGame);
 
-  // Add click listeners to all choice buttons
-  elements.choiceButtons.forEach((button) => {
-    button.addEventListener("click", () =>
-      handleChoice(parseInt(button.dataset.choice))
-    );
-  });
-
-  // Sound button
+  // Sound toggle button
   const soundBtn = document.getElementById("sound-btn");
   if (soundBtn) {
     soundBtn.addEventListener("click", toggleSound);
   }
 
-  // Window resize
-  window.addEventListener("resize", handleWindowResize);
+  // Choice buttons
+  elements.choiceButtons.forEach((button) => {
+    button.addEventListener("click", () =>
+      handleChoice(parseInt(button.dataset.choice))
+    );
+  });
 }
 
 // Toggle sound on/off
@@ -426,9 +383,6 @@ function startGame() {
     elements.truthMonitor.style.transition = "opacity 1.2s ease-in";
     elements.happinessMonitor.style.transition = "opacity 1.2s ease-in";
     elements.autonomyMonitor.style.transition = "opacity 1.2s ease-in";
-
-    // Apply subtle glow effect to the eon title
-    elements.currentEon.classList.add("eon-glow");
 
     // Update monitors to show initial states
     updateMonitors();
@@ -1070,41 +1024,14 @@ function handleChoice(choiceIndex) {
 
 // Add to decision log
 function addToLog(dilemma, choice) {
-  // Check if this is the first entry for the current eon, if so add an eon header
-  const currentEonEntries = document.querySelectorAll(
-    `.log-eon-${gameState.currentEon}`
-  );
-  if (currentEonEntries.length === 0) {
-    const eonNames = ["Awakening World", "Industrial Dusk", "Final Horizon"];
-    const eonHeader = document.createElement("div");
-    eonHeader.classList.add(
-      "log-eon-header",
-      `log-eon-${gameState.currentEon}`
-    );
-    eonHeader.innerHTML = `<div class="log-eon-title">Eon ${
-      gameState.currentEon
-    }: ${eonNames[gameState.currentEon - 1]}</div>`;
-    elements.logContent.appendChild(eonHeader);
-  }
-
-  // Add the actual decision entry
   const logEntry = document.createElement("div");
-  logEntry.classList.add("log-entry", `log-eon-${gameState.currentEon}`);
+  logEntry.classList.add("log-entry");
   logEntry.innerHTML = `
         <div class="log-dilemma">${dilemma}</div>
         <div class="log-choice">→ ${choice}</div>
     `;
   elements.logContent.appendChild(logEntry);
   elements.logContent.scrollTop = elements.logContent.scrollHeight;
-}
-
-// Toggle decision log visibility
-function toggleDecisionLog() {
-  const consoleLog = document.getElementById("console-log");
-  consoleLog.classList.toggle("collapsed");
-
-  // Play sound effect
-  playSFX("uiSelect");
 }
 
 // Show eon splash screen
@@ -1341,10 +1268,8 @@ function continueFromOverlay() {
       gameState.currentEon++;
       gameState.currentQuestion = 1;
 
-      // Update eon display with animation
+      // Update eon display
       const eonNames = ["Awakening World", "Industrial Dusk", "Final Horizon"];
-
-      // Set the text first
       elements.currentEon.textContent = `Eon ${gameState.currentEon}: ${
         eonNames[gameState.currentEon - 1]
       }`;
@@ -1356,16 +1281,6 @@ function continueFromOverlay() {
       elements.currentEon.style.textShadow = "0 0 5px rgba(0, 200, 255, 0.7)";
       elements.currentEon.style.letterSpacing = "1px";
       elements.currentEon.style.marginBottom = "12px";
-
-      // Add animation class for the attention-grabbing effect
-      elements.currentEon.classList.add("eon-changing");
-
-      // Remove the animation class after it completes to allow it to be reapplied next time
-      setTimeout(() => {
-        elements.currentEon.classList.remove("eon-changing");
-        // Add a subtle continuous glow effect after the initial animation
-        elements.currentEon.classList.add("eon-glow");
-      }, 1500);
 
       // Hide the question counter
       if (elements.questionsCounter) {
@@ -1990,7 +1905,6 @@ function resetGame(event) {
     autonomy: 50,
   };
   gameState.decisions = [];
-  gameState.currentQuestionObj = null;
 
   // Reset continue button text to ensure consistency
   const continueBtn = document.getElementById("continue-btn");
@@ -1998,9 +1912,6 @@ function resetGame(event) {
     continueBtn.textContent = "Continue";
     continueBtn.classList.remove("game-complete");
   }
-
-  // Clear any animation classes from the eon title
-  elements.currentEon.classList.remove("eon-changing", "eon-glow");
 
   // Clear log
   elements.logContent.innerHTML = "";
@@ -2140,15 +2051,6 @@ function showBridgeScreen() {
   elements.currentEon.style.letterSpacing = "1px";
   elements.currentEon.style.marginBottom = "12px";
 
-  // Add attention-grabbing animation for the eon title
-  elements.currentEon.classList.add("eon-changing");
-
-  // After animation finishes, switch to subtle glow
-  setTimeout(() => {
-    elements.currentEon.classList.remove("eon-changing");
-    elements.currentEon.classList.add("eon-glow");
-  }, 1500);
-
   // Hide the question counter
   if (elements.questionsCounter) {
     elements.questionsCounter.style.display = "none";
@@ -2158,7 +2060,7 @@ function showBridgeScreen() {
   updateMonitors();
 
   // Play transition sound
-  playSFX("screenTransition");
+  //playSFX("screenTransition");
 }
 
 // Position monitors and bars based on provided screen coordinates
